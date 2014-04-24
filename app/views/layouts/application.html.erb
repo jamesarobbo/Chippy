@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chippy</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<header class="full" id="up">
+
+		<!--!!!!!!!!!!!!!!!MENU BAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+		<div class="menu">
+			<nav>
+			
+				<a class="car" href="#car">The Team</a>
+				<a class="car" href="#travels">Adventures</a>
+				<a class="car" href="#slider">Gallery</a>
+				<!--<a class="car" href="#footer">contact Us</a> -->
+				<a class="car" href="products.html">Shop</a> 
+<!-- FACEBOOK 
+UNDO OR CHANGE
+<h5>
+<a class="face" href="https://www.facebook.com/LVWorldWideRacing?ref=hl"><img src="facebookmini.png"></a>
+<a href=""><img src="facebookmini.png"></a>
+<a href=""><img src="facebookmini.png"></a>
+</h5>
+-->
+<!--
+UNDO   FACEBOOK
+
+<div id="face">
+<a class="book" href="https://www.facebook.com/LVWorldWideRacing?ref=hl"><img src="pics/facebookmini.png"><h6>Follow Us!</h6></a>
+</div>
+-->
+
+			</nav>
+		</div>
+
+	
+<!--!!!!!!!!!!!!!!!!LOGO PICTURE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+		<h1 id="top">
+			<img src="../chippywwr.png" alt="Chippy logo">
+		</h1>
+
+	</header>
+
+<%= yield %>
+
+</body>
+</html>
