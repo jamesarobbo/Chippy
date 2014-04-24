@@ -1,0 +1,11 @@
+<table>
+  <% @order.order_products.each do |op| %>
+
+  <tr>
+    <td><%= op.product.name %></td>
+    <td><%= op.product.price %></td>
+    <td><%= link_to "Remove", product_basket_path(op.product), method: :delete %></td>
+  </tr>
+
+  <% end %>
+</table>

@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
 
 
-	def index 
-		# show all of the products 
+	def index
+		# show all of the products
 
 		@product = Product.all
 
@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
 	def show
 		# show an individual product on a new page. not necessary if i use a lightbox of some sort.
 
+		@product = Product.find(params[:id])
 
 	end
 

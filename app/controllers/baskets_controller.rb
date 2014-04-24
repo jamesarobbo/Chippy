@@ -7,22 +7,26 @@ class BasketsController < ApplicationController
 
 		# get the product ID from the request sent through when 'add to cart' button clicked
 		product = Product.find(params[:product_id])
-		 
-		@basket = 
-		 
 
-		session[:basket_id] = @basket
+		basket.add(product.id)
 
+		flash[:success] = "Product added to basket"
+
+		redirect_to product_path(product)
 
 	end
 
 # need to destroy the unique session basket id from the person. i.e. if they empty their basket?
 	def destroy
+		product = Product.find(params[:product_id])
 
-		reset_session
+		basket.delete(product.id)
+
+		flash[:success] = "Product removed from basket"
+
 
 		# redirect to the products index page
-		redirect_to products_path
-		
+		redirect_to new_order_path
+
 	end
 end
