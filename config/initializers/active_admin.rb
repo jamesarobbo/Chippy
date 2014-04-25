@@ -240,6 +240,8 @@ ActiveAdmin.setup do |config|
   #
   # config.filters = true
 
+  # Permit all parameters on all models in the administration interface
+
   config.before_filter do
     params.permit!
   end

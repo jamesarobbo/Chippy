@@ -25,7 +25,7 @@ class BasketsController < ApplicationController
 		flash[:success] = "Product removed from basket"
 
 
-		# redirect to the products index page
+		# 
 		redirect_to new_order_path
 
 	end

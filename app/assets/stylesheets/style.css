@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Faster+One|Roboto:400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 
 .scrollup {
 	height: 200px;
@@ -8,6 +8,7 @@
 	left: 0.5%;
 	z-index: 20;
 }
+
 div#fancy {
 	margin-top: 30px;
 }
@@ -23,7 +24,7 @@ body {
 	font-family: "Roboto", "Faster One", sans-serif;
 	font-size: 18px;
 	line-height: 1.4;
-	background: #101010;
+	background: #d3d3d3;
 	color: #ffffff;
 	left: 150;
 	width: 100%;
