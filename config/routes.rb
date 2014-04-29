@@ -4,8 +4,15 @@ Chippy::Application.routes.draw do
 
   get "static_pages/home"
 
+  get "static_pages/team"
+
+  get "static_pages/adventures"
+
+  get "static_pages/gallery"
+
 # the root URL for the site
   root "static_pages#home"
+
 
   resources :products do
 
@@ -14,9 +21,6 @@ Chippy::Application.routes.draw do
   end
 
   resources :orders
-
-
-
 
 
 end

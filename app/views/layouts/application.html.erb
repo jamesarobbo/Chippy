@@ -14,11 +14,14 @@
 		<div class="menu">
 			<nav>
 
-        <%= link_to pluralize(basket.size, "items"), new_order_path %>
-				<a class="car" href="#car">The Team</a>
-				<a class="car" href="#travels">Adventures</a>
-				<a class="car" href="#slider">Gallery</a>
-				<!--<a class="car" href="#footer">contact Us</a> -->
+        		<%= link_to pluralize(basket.size, "item"), new_order_path %>
+		
+      			<%= link_to "Team", static_pages_team_path %>
+				
+				<%= link_to "Adventures", static_pages_adventures_path %>
+
+				<%= link_to "Gallery", static_pages_gallery_path %>
+				
 				<%= link_to "Shop", products_path %>
 
 
@@ -29,7 +32,9 @@
 <!--!!!!!!!!!!!!!!!!LOGO PICTURE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
 		<h1 id="top">
-			<img src="../chippywwr.png" alt="Chippy logo">
+
+			<%=  link_to image_tag("../chippywwr.png", :border => 0), root_path %>
+		
 		</h1>
 
 	</header>

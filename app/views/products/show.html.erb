@@ -1,3 +1,5 @@
 <%= @product.name %>
+<%= @product.price %>
+<%= image_tag @product.image(:large) %>
 
 <%= link_to "Add to basket", product_basket_path(@product), method: :post %>

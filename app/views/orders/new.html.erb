@@ -4,6 +4,7 @@
   <tr>
     <td><%= op.product.name %></td>
     <td><%= op.product.price %></td>
+    <td><%= image_tag op.product.image(:small) %></td>
     <td><%= link_to "Remove", product_basket_path(op.product), method: :delete %></td>
   </tr>
 

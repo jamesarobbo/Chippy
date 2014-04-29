@@ -13,5 +13,18 @@ ActiveAdmin.register Product do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  
+
+  form :html => { :enctype => "multipart/form-data" } do |f|
+    f.inputs "Product", :multipart => true do
+      f.input :name
+      f.input :description
+      f.input :number_in_stock
+      f.input :color
+      f.input :size
+      f.input :price   
+      f.input :image
+      
+      end
+      f.actions
+end
 end
