@@ -47,3 +47,15 @@ end
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem "paperclip", "~> 4.1 "
+
+gem "activemerchant"
+
+gem "simple_form"
+
+gem "country_select"
+
+
+
+
+
+

@@ -1,0 +1,216 @@
+<!--the car!!!-->
+<!--i added the id car for floating to car!-->
+	<section class="full" id="car">
+		<div class="container"> 
+
+			<div class="row">
+
+
+
+				<div class="four columns clearfix">	
+					<h2>The Pilot</h2>
+						<img id="rond" class="six columns clearfix" src="/assets/me.jpg">
+					
+							<p id="profile"> Lizzy is the pilot and the passion behind the wheel. From a young age growing up in Switzerland her love for cars was clear and at 18 her dream car, “Chippy”, arrived not a day too late. Armed with just the strength of her resolve and a hunger for driving nothing stands in the way of Lizzy and her destination. From Odessa to Vienna and Lisbon to Milan, Lizzy will not only lead the way but make any destination feel like home. 
+							</p>
+				</div>
+
+
+				<div class="four columns clearfix">
+					<h2>The Car</h2>
+						<img id="rond" class="six columns clearfix" src="/assets/chippyprofile.JPG" alt="Chippy">
+						
+							<p id="profile"> At the heart of Chippy WorldWide Racing is “Chippy”; a 2009 Mini Cooper S Cabriolet. He may be small but he is mighty, always safely guiding his passengers through the harshest of environments. War-torn streets, the sweltering heat of 40°C deserts, and treacherous ice-covered roads are no match for this fearless Mini. “Chippy” powered the team, equipped with just a couple of walkie talkies and a bright orange “Get out of the way” traffic lamp, through an incredible total of 39 countries.
+							</p>
+				</div>
+
+
+				<div class="four columns clearfix">	
+					<h2>The Co-pilot</h2>	
+			 			<img id="rond" class="six columns clearfix" src="/assets/vale.jpg" alt="valush">
+					
+							<p id="profile"> Valentina, co-pilot, financier, stylist and Mother Russia native, is the energy of the team. Always equipped with an emergency snack, energy drink or anti-sleeping chewing gum she keeps the team focused and firing on all cylinders. And with her style, the team blends seamlessly into local cultures, from Gypsy hipster in Romania to gangster chic in Moldova.
+							</p>
+				</div>
+
+			</div>
+		</div>	
+	</section>
+
+
+	<!--BACKGROUND PICTURES-->
+	<section id="andorra" class="full"></section>
+
+	<section id="bulgaria" class="full"></section>
+
+
+
+
+
+	<!-- THE STORIES PART WITH FANCYBOX!!!-->
+<section class="full" id="travels">
+	<div class="container">
+
+		<h2>Stories</h2>
+			
+			<div class="row" id="fancy">
+			
+
+				<div class="three columns">
+					<a class="fancybox" rel="gallery1" href="/assets/albania_big.jpg"><img src="/assets/albania_small.jpg" alt="albania" /></a>
+				</div>
+		
+		
+				<div class="three columns">
+					<a class="fancybox" rel="gallery2" href="/assets/marocco_big.jpg"><img src="/assets/marocco_small.jpg" alt="morocco" /></a>
+				</div>
+
+		
+				<div class="three columns">	
+					<a class="fancybox" rel="gallery3" href="/assets/trans.jpg"><img src="/assets/trans_small.jpg" alt="" /></a>
+				</div>
+				
+
+				<div class="three columns">	
+					<a class="fancybox" rel="gallery4" href="/assets/map_big.jpg"><img src="/assets/map_small.jpg" alt="" /></a>
+				</div>
+
+			</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--transform id names in css PICTURES-->
+
+	<section id="trans" class="full"></section>
+	<section id="portugal" class="full"></section>
+	<section id="albania" class="full"></section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--here put sliding pictures!!!!!!!!!!!!-->
+
+<section class="slider container full" id="slider">
+<div class="slider six columns offset-by-three">
+
+				<ul class="video-slider">
+					
+
+					<!--<li><iframe src="http://www.youtube.com/embed/FXb5sKhTQPo" frameborder="0" width="460" height="460" allowfullscreen></iframe></li>-->
+
+					<li><img src="/assets/gibraltar1.jpg" alt="gibraltar"></li>
+					<li><img src="/assets/poland1.jpg" alt="poland"></li>
+					<li><img src="/assets/greece1.jpg" alt="greece"></li>
+					<li><img src="/assets/romenia1.jpg" alt="romenia"></li>
+					<li><img src="/assets/lithuania1.jpg" alt="lituania"></li>
+					<li><img src="/assets/bulg1.jpg" alt="bulgaria"></li>
+					<li><img src="/assets/ukraine.jpg" alt="ukrain"></li>
+					<li><img src="/assets/france1.jpg" alt="france"></li>
+					<li><img src="/assets/serbia1.jpg" alt="serbia"></li>
+					<li><img src="/assets/netherlands1.jpg" alt="nl"></li>	
+					<li><img src="/assets/morocco1.jpg" alt="morocco"></li>
+					<li><img src="/assets/albania1.jpg" alt="albania"></li>
+					<li><img src="/assets/portugal1.jpg" alt="portugal"></li>
+					<li><img src="/assets/montenegro1.jpg" alt="montenegro"></li>
+					<li><img src="/assets/latvia1.jpg" alt="latvia"></li>
+					<li><img src="/assets/spain1.jpg" alt="spain"></li>
+					<li><img src="/assets/ceckrep1.jpg" alt="czechrepublic"></li>
+					<li><img src="/assets/kosovo1.jpg" alt="kosovo"></li>
+
+				</ul>
+	
+
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<section id="kos" class="full"></section>
+<!--transform id names in css
+	<section id="romenia" class="full"></section>
+
+	<section id="turkey" class="full"></section>
+-->
+
+
+
+<!-- CREATE A FOOTER WITH INSIDE THE LOGO OF MAESON ITS ALREADY IN CSS!!!ddddd
+<section class="full" id="footer">
+<div class="container">
+
+<h2>contact us </h2> 
+
+
+	<a href="mailto:info@chippyworldwideracing.com?Subject=Hello%20again" target="_top">
+<h6>info@chippyworldwideracing.com</h6></a>
+
+
+
+
+	<img class="maeson" src="/assets/maesonlogo.png" height="120px"> 
+	
+</div>
+	</section>
+-->
+
+
+<!--so that the /assets can elevate fancy box tried or we can try lightbox or soemthing even better
+	!!!!
+<div id="lightbox">
+	<img src="/assets/albania.jpg">
+</div>
+-->
+<!--java!!!!-->
+				

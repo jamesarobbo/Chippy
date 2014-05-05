@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
 
+
+
+	
+	
 	def new
 		# this would be the checkout page
 
@@ -11,7 +15,15 @@ class OrdersController < ApplicationController
 			@order.order_products.build(product: Product.find(item_id))
 		end
 
+
+
+
 	end
+
+
+
+
+
 
 	def create
 		# this adds the order to the database

@@ -1,6 +1,20 @@
 Chippy::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  STRIPE_SECRET_KEY = "sk_test_RrKqwBKfs6rdshDd2EfKEV2J"
+
+  STRIPE_KEY = "pk_test_yflETlfVn3yH0btcWZ5hDsfA"
+
+
+  ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::StripeGateway.new(
+                  :login => "pk_test_yflETlfVn3yH0btcWZ5hDsfA",
+                  :password => "sk_test_RrKqwBKfs6rdshDd2EfKEV2J")
+
+      
+  
+
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -27,3 +41,5 @@ Chippy::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 end
+
+
