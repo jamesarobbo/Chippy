@@ -16,18 +16,12 @@
 <tr>
   <td>Total</td>
   <td>
-  <%= number_to_currency(total_price) %>
+  <%= number_to_currency(Product.total_basket_price(basket)) %> 
   </td>
 
 </tr>
 
-
-
-
 </table>
-
-
-
 
 
 

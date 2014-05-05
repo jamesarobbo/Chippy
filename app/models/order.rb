@@ -6,10 +6,6 @@ class Order < ActiveRecord::Base
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 
-
-	
-
-
 	def credit_card
 
 		@credit_card ||= ActiveMerchant::Billing::CreditCard.new(
@@ -35,6 +31,12 @@ class Order < ActiveRecord::Base
 		{
 		:currency => USD
 		}
+
+	end
+
+
+	def price_in_cents
+		return (Product.total_basket_price(baske)*100).round
 
 	end
 

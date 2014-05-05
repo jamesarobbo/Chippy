@@ -1,9 +1,5 @@
 class OrdersController < ApplicationController
 
-
-
-	
-	
 	def new
 		# this would be the checkout page
 
@@ -19,9 +15,6 @@ class OrdersController < ApplicationController
 
 
 	end
-
-
-
 
 
 
