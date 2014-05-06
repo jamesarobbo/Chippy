@@ -20,7 +20,7 @@
   </td>
 
 </tr>
-
+  <%= %>
 </table>
 
 
@@ -46,9 +46,9 @@
   
 <h3>Your payment information</h3>
 
-  <%= f.input :card_number%>
+  <%= f.input :card_number %>
   <%= f.input :security_code, label: "Security code (CVC)" %>
   <%= f.input :card_expires_on, as: :date, discard_day: true, add_month_numbers: true, start_year: Date.today.year, end_year: Date.today.year + 10, order: [:month, :year], label: "Card expiration date"  %>
-  <%= f.button :submit %>
+  <%= f.button :submit, "Confirm and pay" %>
  
 <% end %>

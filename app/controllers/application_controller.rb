@@ -4,12 +4,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :basket
-  
 
   
   def basket
     session[:basket] ||= Set.new
   end
+
+ # include ApplicationHelper
 
 
 

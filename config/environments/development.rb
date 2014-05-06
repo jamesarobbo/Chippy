@@ -1,18 +1,17 @@
 Chippy::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  STRIPE_SECRET_KEY = "sk_test_RrKqwBKfs6rdshDd2EfKEV2J"
+  STRIPE_SECRET_KEY = "sk_test_0bDh8EaHgpe9NqcUfcE2WdLb"
 
-  STRIPE_KEY = "pk_test_yflETlfVn3yH0btcWZ5hDsfA"
+  STRIPE_PUBLISHABLE_KEY = "pk_test_IOcEM3fA5kfu5RDm9eNQzAJb"
 
 
+  config.after_initialize do
   ActiveMerchant::Billing::Base.mode = :test
-    ::GATEWAY = ActiveMerchant::Billing::StripeGateway.new(
-                  :login => "pk_test_yflETlfVn3yH0btcWZ5hDsfA",
-                  :password => "sk_test_RrKqwBKfs6rdshDd2EfKEV2J")
+    ::GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => 'sk_test_0bDh8EaHgpe9NqcUfcE2WdLb')
 
       
-  
+  end
 
 
   # In the development environment your application's code is reloaded on

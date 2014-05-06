@@ -5,13 +5,29 @@ class Order < ActiveRecord::Base
 
 	attr_accessor :card_number, :security_code, :card_expires_on
 
+	# validate :validate_card, :on => :create
+
+ #  def validate_card
+ #    unless credit_card.valid?
+ #      credit_card.errors.full_messages.each do |message|
+ #        errors.add_to_base message
+ #      end
+ #    end
+ #  end
+
+
+	def purchase(basket)
+
+		response = GATEWAY.purchase(Product.total_basket_price(basket)*100, credit_card)
+	
+	end
 
 	def credit_card
 
 		@credit_card ||= ActiveMerchant::Billing::CreditCard.new(
+			:number					=> card_number,
 			:first_name				=> first_name,
 			:last_name				=> last_name,
-			:card_number			=> card_number,
 			:verification_value		=> security_code,
 			:month					=> card_expires_on.month,
 			:year					=> card_expires_on.year
@@ -20,30 +36,7 @@ class Order < ActiveRecord::Base
 
 
 
-	def purchase
 
-		response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
 	
-	end
-
-
-	def purchase_options
-		{
-		:currency => USD
-		}
-
-	end
-
-
-	def price_in_cents
-		return (Product.total_basket_price(baske)*100).round
-
-	end
-
-
-
-
-
-
 
 end
