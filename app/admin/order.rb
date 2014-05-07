@@ -8,6 +8,10 @@ filter :email
 filter :country_code
 filter :shipped
 filter :shipped_date
+
+scope :all, :default => true
+scope :shipped
+scope :pending
   
   
   # See permitted parameters documentation:
