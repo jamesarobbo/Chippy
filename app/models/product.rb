@@ -12,4 +12,6 @@ class Product < ActiveRecord::Base
     	where(id: basket.to_a).sum(:price)
   end
 
+
+
 end

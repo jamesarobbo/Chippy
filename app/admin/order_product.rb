@@ -1,4 +1,6 @@
 ActiveAdmin.register OrderProduct do
+  
+
 
   
   # See permitted parameters documentation:
@@ -13,6 +15,8 @@ ActiveAdmin.register OrderProduct do
   #  permitted << :other if resource.something?
   #  permitted
   # end
+
+
 
 
 end

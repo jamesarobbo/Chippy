@@ -5,6 +5,10 @@ class Order < ActiveRecord::Base
 
 	attr_accessor :card_number, :security_code, :card_expires_on
 
+	def to_s
+  	"#{id}"
+  	end
+
 	# validate :validate_card, :on => :create
 
  #  def validate_card
@@ -18,7 +22,7 @@ class Order < ActiveRecord::Base
 
 	def purchase(basket)
 
-		response = GATEWAY.purchase(Product.total_basket_price(basket)*100, credit_card)
+		response = GATEWAY.purchase(Product.total_basket_price(basket)*100, credit_card, purchase_options)
 	
 	end
 
@@ -32,6 +36,19 @@ class Order < ActiveRecord::Base
 			:month					=> card_expires_on.month,
 			:year					=> card_expires_on.year
 			)
+	end
+
+	def purchase_options 
+	{
+		:billing_address => {
+			:address1 => address_1,
+			:address2 => address_2,
+			:city 	  => city,
+			:country  => country_code,
+			:zip      => postal_code 
+			}
+	}
+
 	end
 
 
