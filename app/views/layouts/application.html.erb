@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chippy</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<header class="full" id="up">
+
+<!--!!!!!!!!!!!!!!!NAVIGATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+		<div class="menu">
+			<nav>
+
+        		<%= link_to pluralize(basket.size, "item"), new_order_path %>
+		
+      			<%= link_to "Team", static_pages_team_path %>
+				
+				<%= link_to "Adventures", static_pages_adventures_path %>
+
+				<%= link_to "Gallery", static_pages_gallery_path %>
+				
+				<%= link_to "Shop", products_path %>
+
+
+			</nav>
+		</div>
+
+
+<!--!!!!!!!!!!!!!!!!LOGO PICTURE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+		<h1 id="top">
+
+			<%=  link_to image_tag("../chippywwr.png", :border => 0), root_path %>
+		
+		</h1>
+
+	</header>
+
+<%= yield %>
+
+</body>
+</html>

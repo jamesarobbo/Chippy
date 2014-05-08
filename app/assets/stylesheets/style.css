@@ -1,0 +1,77 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+
+
+body {
+	font-family: "Roboto", sans-serif;
+	font-size: 18px;
+	line-height: 1.4;
+	background: #d3d3d3;
+	width: 100%;
+}
+
+/*MAIN SETTING FOR ALL PAGE*/
+header, section {
+	background-position: center center;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative; 
+}
+
+
+/*WHITE HEADER FOR MENU BAR*/
+div.menu {
+	background: white;
+	opacity: 0.9;
+	height: 90px;
+	line-height: 90px;
+	
+	width: 100%;
+	top: 0;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	z-index: 10;
+	text-align: right;
+	/*make text align right for future*/
+	padding-right: 30px;
+}
+
+nav a {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+a:hover {
+	color: red;
+}
+
+
+/*CHIPPY LOGO!!*/
+h1 {
+	position: fixed;
+	left: 0%;
+	top: -5%;
+	width: 350px;
+	z-index: 20;
+	/*had to change margin from 125 to 185*/
+}
+
+
+/*CHECKED header video */
+div.videoframe {
+	background-color: red; 
+	width: 510px;
+	height: 386px;
+	position: absolute;
+	left: 34%;
+	top: 30%;
+}
+
+iframe {
+	position: absolute;
+	padding: 6px
+	z-index: 1;
+}
+
+
+
+
+

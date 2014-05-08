@@ -1,0 +1,14 @@
+<% @products.each do |product| %>
+
+<div>
+	<p><%= product.name %></p>
+	<p><%= product.description %></p>
+	<p><%= product.color %></p>
+	<p><%= product.size %></p>
+	<p><%= product.price %></p>
+	<p><%= image_tag product.image(:medium) %></p>
+	<p><%= link_to "Show", product_path(product) %></p>
+
+</div>
+
+<% end %>
