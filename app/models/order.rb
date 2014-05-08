@@ -6,8 +6,9 @@ class Order < ActiveRecord::Base
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 	scope :shipped, where(:shipped => true)
-    scope :pending, where(:shipped => false)
-    
+	scope :unshipped, where(:shipped => false)
+	
+
 	def to_s
   	"#{id}"
   	end

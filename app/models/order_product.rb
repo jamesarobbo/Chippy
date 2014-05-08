@@ -7,4 +7,9 @@ class OrderProduct < ActiveRecord::Base
   	"#{id}"
   end
 
+    # def self.product(basket)
+  	# a = Product.find(basket.to_a).collect{|product| product.id}
+  	
+
+	# end
 end

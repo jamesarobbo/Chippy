@@ -1,5 +1,7 @@
 ActiveAdmin.register Product do
 
+
+
   filter :name
   filter :color
   filter :size
@@ -18,6 +20,7 @@ ActiveAdmin.register Product do
   # end
 
   index do
+    selectable_column
     column "Product ID", :id
     column :name
     column :description

@@ -1,5 +1,12 @@
 ActiveAdmin.register Order do
 
+scope :all, :default => true
+scope :shipped
+
+
+
+scope :unshipped
+
 filter :created_at 
 filter :order_products
 filter :products
@@ -9,9 +16,10 @@ filter :country_code
 filter :shipped
 filter :shipped_date
 
-scope :all, :default => true
-scope :shipped
-scope :pending
+
+
+
+
   
   
   # See permitted parameters documentation:
@@ -31,10 +39,17 @@ scope :pending
     selectable_column
     column "Order ID", :id
     column "Order Date", :created_at
-    
-    column "Status", :sortable => :shipped do |s|
-      status_tag((s.shipped? ? "Shipped" : "Pending"), (s.shipped? ? :ok : :warning))
+
+    column ("Products") {Product.product(basket) }
+
+
+
+    # column link_to("Products", admin_order_products_path(:products_id))
+   
+    column "Status", :sortable => :shipped do |shipped|
+      status_tag((shipped.shipped? ? "Shipped" : "Unshipped"), (shipped.shipped? ? :ok : :warning))
     end
+
     column :shipped_date
     column ("Total") {number_to_currency Product.total_basket_price(basket) }
     column :first_name
