@@ -12,10 +12,10 @@ class Product < ActiveRecord::Base
     where(id: basket.to_a).sum(:price)
   end
 
-  def self.product(basket)
-  	a = Product.find(basket.to_a).collect{|product| product.name + " " + product.size + " " + product.color}
-  	b = a.join(', ')
-  end
+  # def self.product(basket)
+  # 	a = Product.find(basket.to_a).collect{|product| product.name + " " + product.size + " " + product.color}
+  # 	b = a.join(', ')
+  # end
 
  	
 

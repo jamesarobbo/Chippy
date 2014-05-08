@@ -24,7 +24,9 @@ ActiveAdmin.register Product do
     column "Product ID", :id
     column :name
     column :description
-    column :price
+    column :price do |product| 
+      number_to_currency product.price
+    end  
     column :color
     column :size
     column :image_file_name  
