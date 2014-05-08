@@ -1,13 +1,8 @@
 ActiveAdmin.register Order do
 
-<<<<<<< HEAD
-scope :all, :default => false
-scope :shipped
-=======
+
 scope :all, :default => true
 scope :shipped
-
->>>>>>> c0b32752f24baf54b3c0eb546ab3f16b80484653
 scope :unshipped
 
 filter :created_at 

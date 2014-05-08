@@ -6,11 +6,9 @@ class Order < ActiveRecord::Base
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 	scope :shipped, where(:shipped => true)
-<<<<<<< HEAD
+
 	scope :unshipped
-=======
-	scope :unshipped, where(:shipped => false)
->>>>>>> c0b32752f24baf54b3c0eb546ab3f16b80484653
+
 	
 
 	def to_s
