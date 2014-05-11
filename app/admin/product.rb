@@ -30,6 +30,8 @@ ActiveAdmin.register Product do
     column :color
     column :size
     column :image_file_name  
+
+    default_actions
   end
 
 

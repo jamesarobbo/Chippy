@@ -8,10 +8,10 @@
 </head>
 <body>
 
-	<header class="full" id="up">
+	 <header class="full" id="up">
 
 <!--!!!!!!!!!!!!!!!NAVIGATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-		<div class="menu">
+		 <div class="menu">
 			<nav>
 
         		<%= link_to pluralize(basket.size, "item"), new_order_path %>
@@ -26,19 +26,18 @@
 
 
 			</nav>
-		</div>
+		</div> 
 
 
 <!--!!!!!!!!!!!!!!!!LOGO PICTURE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
-		<h1 id="top">
+		<!-- <h1 id="top"> -->
 
-			<%=  link_to image_tag("../chippywwr.png", :border => 0), root_path %>
+			<!-- <%=  link_to image_tag("../chippywwr.png", :border => 0), root_path %> -->
 		
-		</h1>
+		<!-- </h1> -->
 
-	</header>
-
+	 </header>  
 <%= yield %>
 
 </body>

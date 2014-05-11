@@ -1,5 +1,8 @@
 ActiveAdmin.setup do |config|
 
+
+
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -110,7 +113,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
+  # config.root_to = 'orders#index'
 
 
   # == Admin Comments

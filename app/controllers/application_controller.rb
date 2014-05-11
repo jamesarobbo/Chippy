@@ -6,12 +6,15 @@ class ApplicationController < ActionController::Base
   helper_method :basket
 
   
+
+
   def basket
     session[:basket] ||= Set.new
   end
 
  # include ApplicationHelper
 
+ 
 
 
 

@@ -4,6 +4,10 @@ Chippy::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  
+
+  
+
   get "static_pages/home"
 
   get "static_pages/team"

@@ -25,30 +25,44 @@
 
 
 
+
+
 <%= simple_form_for @order do |f| %>
 
 <h3>Your details</h3>
   
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :email %>
+  <%= f.input :first_name, required: false %>
+  <%= f.input :last_name, required: false %>
+  <%= f.input :email, placeholder: 'james@domain.com', required: false %>
 
 <h3>Your shipping address</h3>
 
-  <%= f.input :address_1 %>
-  <%= f.input :address_2 %>
-  <%= f.input :city %>
-  <%= f.input :postal_code %>
+  <%= f.input :address_1, required: false %>
+  <%= f.input :address_2, required: false %>
+  <%= f.input :city, required: false %>
+  <%= f.input :postal_code, required: false %>
   <div>
-    <%= f.label :country_code, "Country" %>
-    <%= f.country_select :country_code, ["United Kingdom", "United States of America", "Switzerland", "Italy", "Russia"] %>
+    <%= f.label :country_code, "Country", required: false %>
+    <%= f.country_select :country_code, ["United Kingdom", "United States of America", "Switzerland", "Italy", "Russia"], required: false %>
   </div>
   
 <h3>Your payment information</h3>
+
+<%= if @order.errors.any?
+ @order.errors[:base].to_sentence
+
+end%>
 
   <%= f.input :card_number %>
   <%= f.input :security_code, label: "Security code (CVC)" %>
   <%= f.input :card_expires_on, as: :date, discard_day: true, add_month_numbers: true, start_year: Date.today.year, end_year: Date.today.year + 10, order: [:month, :year], label: "Card expiration date"  %>
   <%= f.button :submit, "Confirm and pay" %>
+
+  <%=
+
+
+
+
+  %>
  
 <% end %>

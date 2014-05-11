@@ -5,32 +5,51 @@ class Order < ActiveRecord::Base
 
 	attr_accessor :card_number, :security_code, :card_expires_on
 
-	scope :shipped, where(:shipped => true)
+# scope for active admin
+	scope :unshipped, -> { where(shipped: false) }
+	scope :shipped, -> { where(shipped: true) }
 
-	scope :unshipped
+	validates :first_name, presence: {:message => "Please enter your first name"}, :on => :create
+	validates :last_name, presence: {:message => "Please enter your last name"}, :on => :create
+	validates :email, presence: {:message => "Please enter a valid email address"}, format: { with: /.+@.+\..+/i}, :on => :create 
+	validates :address_1, presence: {:message => "Please enter your address"}, :on => :create
+	validates :city, presence: {:message => "Please enter your city"}, :on => :create
+	validates :postal_code, presence: {:message => "Please enter your postal or zip code"}, :on => :create
+	validates :country_code, presence: {:message => "Please select your country"}, :on => :create
+	validates :card_number, presence: true, :on => :create
+	validates :security_code, presence: true, length: { is: 3 }, :on => :create
+	validates :card_expires_on, presence: true, :on => :create
+	
+	validate :validate_card, :on => :create
+	
+	
 
 	
 
+# convert object to human readable format
 	def to_s
   	"#{id}"
+  	
   	end
 
-	# validate :validate_card, :on => :create
+# This is for the row on Active Admin that displays Order number and name
+	def display_name
+		a = self.id.to_s
+		b = "Order ##{a}" + " - " + self.first_name + " " + self.last_name
 
- #  def validate_card
- #    unless credit_card.valid?
- #      credit_card.errors.full_messages.each do |message|
- #        errors.add_to_base message
- #      end
- #    end
- #  end
-
-
-	def purchase(basket)
-
-		response = GATEWAY.purchase(Product.total_basket_price(basket)*100, credit_card, purchase_options)
-	
 	end
+
+
+	def validate_card
+	 unless credit_card.valid? 
+	      credit_card.errors.full_messages.each do |message|
+       	   errors[:base] << message
+
+	      end
+
+	   end
+	end
+
 
 	def credit_card
 
@@ -57,9 +76,47 @@ class Order < ActiveRecord::Base
 
 	end
 
+	def purchase(basket)
+
+		response = GATEWAY.purchase(Product.total_basket_price(basket)*100, credit_card, purchase_options)
+		
+			if response.params.key?('error')
+
+				self.errors.add :base, response.message
+
+				false
+
+			else 
+				true
+				
+			end	
+
+	end
 
 
 
-	
+
+	# def response
+
+	# 	if response.success?
+			
+	# 		$my_response = nil
+	# 	else
+	# 		$my_response = response.message
+		
+	# 	end	
+		
+
+	# 	# unless response.success?
+	# 	# $my_response = response.message
+	# 	# 	# raise StandardError, @my_response #response.message
+	# 	# end
+	# end
+
+
+
+
+
 
 end
+
