@@ -1,13 +1,5 @@
 Chippy::Application.routes.draw do
-  
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
-
-  
-
-  
-
+ 
   get "static_pages/home"
 
   get "static_pages/team"
@@ -27,6 +19,23 @@ Chippy::Application.routes.draw do
   end
 
   resources :orders
+
+
+
+
+devise_for :admin_users, ActiveAdmin::Devise.config
+
+
+  
+  ActiveAdmin.routes(self)
+
+  
+
+  
+
+  
+
+
 
 
 end

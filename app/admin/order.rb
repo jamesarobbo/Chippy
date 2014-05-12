@@ -1,19 +1,21 @@
 ActiveAdmin.register Order do
 
-permit_params :first_name, :last_name, :email, :address_1, :address_2, :city, :postal_code, :country_code, :shipped
+menu :priority => 1
 
-scope :all, :default => true
-scope :unshipped
+scope :all
+scope :pending, :default => true
 scope :shipped
 
-filter :created_at 
-filter :order_products
+filter :created_at, :label => "Order Date"
+# filter :order_products
 filter :products
 filter :last_name
-filter :email
-filter :country_code
+filter :email, :label => "Email Address"
+filter :country_code, :label => "Country"
 filter :shipped
 filter :shipped_date
+
+actions :all, :except => :new
 
 
   index do 
@@ -24,12 +26,12 @@ filter :shipped_date
     column "Order Date", :created_at
     # column link_to("Products", admin_order_products_path(:products_id))
     column "Status", :sortable => :shipped do |ship|
-      status_tag((ship.shipped? ? "Shipped" : "Unshipped"), (ship.shipped? ? :ok : :warning))
+      status_tag((ship.shipped? ? "Shipped" : "Pending"), (ship.shipped? ? :ok : :warning))
     end
     column :shipped_date
     column :first_name
     column :last_name
-    column :email
+    column "Email Address", :email
     column :address_1
     column :address_2
     column :city
@@ -51,18 +53,11 @@ filter :shipped_date
         # t.column("Quantity") {|item| item.quantity}
         t.column("Price") {|item| number_to_currency item.product.price}
 
-
-
       end
       
     end
     active_admin_comments
   end    
-
-
-
-
-   
 
 form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Order", :multipart => true do
@@ -74,8 +69,8 @@ form :html => { :enctype => "multipart/form-data" } do |f|
       f.input :city   
       f.input :postal_code
       f.input :country_code
-      f.input :shipped_date
       f.input :shipped
+      f.input :shipped_date, start_year: Date.today.year
       
       end
       f.actions

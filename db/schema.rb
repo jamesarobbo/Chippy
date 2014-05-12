@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509094932) do
+ActiveRecord::Schema.define(version: 20140511203046) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -66,9 +66,9 @@ ActiveRecord::Schema.define(version: 20140509094932) do
     t.string   "city"
     t.string   "postal_code"
     t.string   "country_code"
-    t.boolean  "shipped",      limit: 255
     t.date     "shipped_date"
     t.integer  "total_price"
+    t.boolean  "shipped",      default: false
   end
 
   create_table "products", force: true do |t|

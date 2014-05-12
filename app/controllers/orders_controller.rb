@@ -31,25 +31,17 @@ class OrdersController < ApplicationController
 		if @order.purchase(basket)
 			if @order.save
 			
-				
 				render "show"	
 			else 
 
 				render "new"
-				
-
-
 					
 			end
 		else
 			render "new"
 			
-
-			
 		end
 
-	
-	
 	end
 
 	def show

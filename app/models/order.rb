@@ -6,11 +6,11 @@ class Order < ActiveRecord::Base
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 # scope for active admin
-	scope :unshipped, -> { where(shipped: false) }
+	scope :pending, -> { where(shipped: false) }
 	scope :shipped, -> { where(shipped: true) }
 
-	validates :first_name, presence: {:message => "Please enter your first name"}, :on => :create
-	validates :last_name, presence: {:message => "Please enter your last name"}, :on => :create
+	validates :first_name, presence: {:message => "Please enter your first name"}, length: { minimum: 2, :message => "Your name isn't long enough" }, :on => :create
+	validates :last_name, presence: {:message => "Please enter your last name"}, length: { minimum: 2 }, :on => :create
 	validates :email, presence: {:message => "Please enter a valid email address"}, format: { with: /.+@.+\..+/i}, :on => :create 
 	validates :address_1, presence: {:message => "Please enter your address"}, :on => :create
 	validates :city, presence: {:message => "Please enter your city"}, :on => :create
@@ -19,11 +19,10 @@ class Order < ActiveRecord::Base
 	validates :card_number, presence: true, :on => :create
 	validates :security_code, presence: true, length: { is: 3 }, :on => :create
 	validates :card_expires_on, presence: true, :on => :create
+	validates_presence_of :shipped_date, :message => "Please enter a date", :if => :shipped?
 	
 	validate :validate_card, :on => :create
 	
-	
-
 	
 
 # convert object to human readable format
@@ -82,7 +81,7 @@ class Order < ActiveRecord::Base
 		
 			if response.params.key?('error')
 
-				self.errors.add :base, response.message
+				errors[:base] << response.message
 
 				false
 
@@ -92,29 +91,6 @@ class Order < ActiveRecord::Base
 			end	
 
 	end
-
-
-
-
-	# def response
-
-	# 	if response.success?
-			
-	# 		$my_response = nil
-	# 	else
-	# 		$my_response = response.message
-		
-	# 	end	
-		
-
-	# 	# unless response.success?
-	# 	# $my_response = response.message
-	# 	# 	# raise StandardError, @my_response #response.message
-	# 	# end
-	# end
-
-
-
 
 
 
