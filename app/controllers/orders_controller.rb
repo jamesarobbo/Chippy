@@ -30,6 +30,8 @@ class OrdersController < ApplicationController
 
 		if @order.purchase(basket)
 			if @order.save
+
+				OrderNotifier.received(@order).deliver
 			
 				render "show"	
 			else 

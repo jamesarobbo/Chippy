@@ -71,7 +71,9 @@ iframe {
 	z-index: 1;
 }
 
-
+div.payment input {
+display: block;
+}
 
 
 

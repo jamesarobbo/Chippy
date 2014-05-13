@@ -54,6 +54,9 @@ gem "simple_form"
 
 gem "country_select"
 
+# secures sensitive info
+gem "figaro" 
+
 
 
 
