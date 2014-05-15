@@ -31,9 +31,12 @@ class OrdersController < ApplicationController
 		if @order.purchase(basket)
 			if @order.save
 
-				OrderNotifier.received(@order).deliver
+				OrderNotifier.shipped(@order).deliver
 			
-				render "show"	
+				reset_session
+
+				render "show"
+
 			else 
 
 				render "new"

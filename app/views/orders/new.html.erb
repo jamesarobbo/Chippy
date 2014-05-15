@@ -13,6 +13,12 @@
 
   <% end %>
 
+<% if basket.empty? %> 
+
+<tr></tr>
+
+<% else %>
+
 <tr>
   <td>Total</td>
   <td>
@@ -20,6 +26,7 @@
   </td>
 
 </tr>
+<% end %>
  
 </table>
 

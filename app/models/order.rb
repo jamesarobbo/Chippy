@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
 	validates :card_number, presence: true, :on => :create
 	validates :security_code, presence: true, length: { is: 3 }, :on => :create
 	validates :card_expires_on, presence: true, :on => :create
-	validates_presence_of :shipped_date, :message => "Please enter a date", :if => :shipped?
+	validates_presence_of :shipped_date, :message => "You must enter a shipped date", :if => :shipped?
 	
 	validate :validate_card, :on => :create
 	
