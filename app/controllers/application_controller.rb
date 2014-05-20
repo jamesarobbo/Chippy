@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :basket
+  helper_method :basket_size
 
   
   def basket
@@ -12,12 +13,29 @@ class ApplicationController < ActionController::Base
 
  # include ApplicationHelper
 
- 
+
+  def basket_size
+
+ 	size = 0
+
+ 	basket.each do |t|
+ 		size += t[:quantity]
+ 	end
+
+ 	size
+
+ end
+
+ def self.number_of_each
+      
+    
+    
+    
+
+ end
 
 
 
-
-  
 
 
 

@@ -5,13 +5,23 @@
 
   <tr>
     <td><%= op.product.name %></td>
+    <td>
+    <%= simple_form_for :basket, url: new_order_path(@order) do |f| %>
+
+    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5], required: false %>
+
+    <% end %>
+
+    </td>
     <td><%= number_to_currency(op.product.price) %></td>
     <td><%= image_tag op.product.image(:small) %></td>
-    <td><%= button_to "Remove", product_basket_path(op.product), method: :delete %></td>
+    <td><%= button_to "Delete", product_basket_path(op.product), method: :delete %></td>
   </tr>
 <tr>
 
-  <% end %>
+<% end %>
+
+
 
 <% if basket.empty? %> 
 
@@ -21,8 +31,9 @@
 
 <tr>
   <td>Total</td>
+  <td></td>
   <td>
-  <%= number_to_currency(Product.total_basket_price(basket)) %> 
+  <%= number_to_currency(Product.total_basket_price(basket)) %> (<%= pluralize(basket_size, "item") %>) 
   </td>
 
 </tr>

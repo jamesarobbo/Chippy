@@ -7,10 +7,7 @@ class OrderNotifier < ActionMailer::Base
   #   en.order_notifier.received.subject
   #
   def received()
-    
-
-    
-
+  
   
   end
 
@@ -21,7 +18,7 @@ class OrderNotifier < ActionMailer::Base
   #
   def shipped(order)
    
-    mail(to: order.email, subject: "Your Chippy order has been placed! - Order ref: #{order.id}")
+    mail(to: order.email, subject: "Your Chippy order has been placed! - ref: #{order.id}")
 
   end
 end

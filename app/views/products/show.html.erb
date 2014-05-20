@@ -2,4 +2,10 @@
 <%= @product.price %>
 <%= image_tag @product.image(:large) %>
 
-<%= link_to "Add to basket", product_basket_path(@product), method: :post %>
+<!--<%= link_to "Add to basket", product_basket_path(@product), method: :post %> -->
+
+<%= simple_form_for :basket, url: product_basket_path(@product) do |f| %>
+
+<%= f.input :quantity, as: :select, collection: [1, 2, 3, 4, 5], default: 1, required: false %>
+<%= f.button :submit, "Add to basket" %>
+<% end %>

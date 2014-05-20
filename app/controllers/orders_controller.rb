@@ -9,8 +9,10 @@ class OrdersController < ApplicationController
 
 		@order = Order.new
 
-		basket.each do |item_id|
-			@order.order_products.build(product: Product.find(item_id))
+		# product = basket.find_by(:product_id)
+
+		basket.each do |item|
+			@order.order_products.build(product: Product.find(item[:product_id]))
 		end	
 
 	end
@@ -23,8 +25,8 @@ class OrdersController < ApplicationController
 		# @product = basket.find(params[:product_id])
 
 
-		basket.each do |item_id|
-			@order.order_products.build(product: Product.find(item_id))
+		basket.each do |item|
+			@order.order_products.build(product: Product.find(item[:product_id]))
 		end
 
 
@@ -58,6 +60,9 @@ def order_params
   
   params.require(:order).permit(:card_number, :security_code, :card_expires_on, :first_name, :last_name, :email, :address_1, :address_2, :city, :postal_code, :country_code, :shipped, :shipped_date)
 end
+
+
+
 
 
 
