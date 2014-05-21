@@ -9,10 +9,10 @@ class OrdersController < ApplicationController
 
 		@order = Order.new
 
-		# product = basket.find_by(:product_id)
+		# product = basket.find(:product_id)
 
 		basket.each do |item|
-			@order.order_products.build(product: Product.find(item[:product_id]))
+			@order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity]) 
 		end	
 
 	end
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
 
 
 		basket.each do |item|
-			@order.order_products.build(product: Product.find(item[:product_id]))
+			@order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity])
 		end
 
 

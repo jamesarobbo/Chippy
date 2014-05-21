@@ -64,6 +64,8 @@ class Product < ActiveRecord::Base
 
  
 
+ 
+
 
   
   # def self.product(basket)

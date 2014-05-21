@@ -11,7 +11,6 @@ filter :created_at, :label => "Order Date"
 filter :products
 filter :last_name
 filter :email, :label => "Email Address"
-filter :country_code, :label => "Country"
 filter :shipped
 filter :shipped_date
 
@@ -32,11 +31,6 @@ actions :all, :except => :new
     column :first_name
     column :last_name
     column "Email Address", :email
-    column :address_1
-    column :address_2
-    column :city
-    column :postal_code
-    column "Country", :country_code
     
     default_actions
    end 
@@ -50,16 +44,47 @@ actions :all, :except => :new
         t.column("Description") {|item| item.product.description}
         t.column("Color") {|item| item.product.color}
         t.column("Size") {|item| item.product.size}
-        # t.column("Quantity") {|item| item.quantity}
-        t.column("Price") {|item| number_to_currency item.product.price}
-
+        t.column("Quantity") {|item| item.quantity}
+        t.column("Cost") {|item| number_to_currency item.product.price * item.quantity}
+     
       end
       
     end
     active_admin_comments
-  end    
+  end 
 
-form :html => { :enctype => "multipart/form-data" } do |f|
+
+  sidebar :Customer_Information, :only => :show do
+
+    attributes_table_for order do
+      row :first_name
+      row :last_name
+      row :email
+    end
+  end
+
+  sidebar :Shipping_Information, :only => :show do
+
+    attributes_table_for order do
+      row "Status" do |ship|
+        status_tag((ship.shipped? ? "Shipped" : "Pending"), (ship.shipped? ? :ok : :warning))
+      end
+      row "Address" do |t|
+        t.address_1
+      end  
+      row "Addr. 2" do |t|
+       t.address_2
+      end  
+      row :city
+      row :postal_code
+      row "Country" do |t|
+        t.country_code
+      end  
+    end
+  end   
+
+ 
+  form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Order", :multipart => true do
       f.input :first_name
       f.input :last_name
@@ -70,11 +95,11 @@ form :html => { :enctype => "multipart/form-data" } do |f|
       f.input :postal_code
       f.input :country_code
       f.input :shipped
-      f.input :shipped_date, start_year: Date.today.year
+      f.input :shipped_date, start_year: Date.today.year, order: [:day, :month, :year]
       
       end
       f.actions
-end
+  end
   
 
 

@@ -6,11 +6,13 @@
   <tr>
     <td><%= op.product.name %></td>
     <td>
-    <%= simple_form_for :basket, url: new_order_path(@order) do |f| %>
 
-    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5], required: false %>
+    Quantity: <%= op.quantity %>
+<!--     <%= simple_form_for :basket, url: new_order_path(@order) do |f| %>
 
-    <% end %>
+    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5], selected: op.quantity, required: false %>
+    
+    <% end %> -->
 
     </td>
     <td><%= number_to_currency(op.product.price) %></td>
@@ -36,6 +38,9 @@
   <%= number_to_currency(Product.total_basket_price(basket)) %> (<%= pluralize(basket_size, "item") %>) 
   </td>
 
+</tr>
+<tr>
+  <td> <%= button_to "Continue shopping", products_path, method: :get %></td>
 </tr>
 <% end %>
  

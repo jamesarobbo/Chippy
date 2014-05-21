@@ -61,11 +61,8 @@ class BasketsController < ApplicationController
 
 		# flash[:success] = "Product removed from basket"
 
-	def update
 
-		
 
-	end	
 
 
 		

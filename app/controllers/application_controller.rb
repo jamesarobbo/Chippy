@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :basket
   helper_method :basket_size
+  helper_method :product_quantity
+  
 
   
   def basket
@@ -26,13 +28,6 @@ class ApplicationController < ActionController::Base
 
  end
 
- def self.number_of_each
-      
-    
-    
-    
-
- end
 
 
 
