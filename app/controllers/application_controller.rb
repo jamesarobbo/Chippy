@@ -5,15 +5,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :basket
   helper_method :basket_size
-  helper_method :product_quantity
-  
 
-  
   def basket
     session[:basket] ||= Set.new
   end
-
- # include ApplicationHelper
 
 
   def basket_size
@@ -27,11 +22,5 @@ class ApplicationController < ActionController::Base
  	size
 
  end
-
-
-
-
-
-
 
 end

@@ -20,6 +20,12 @@ Chippy::Application.routes.draw do
 
   resources :orders
 
+  
+  match "orders/new/basket_update", to: "baskets#basket_update", via: [:get, :post], as: :basket_update
+
+
+
+
 
 
 

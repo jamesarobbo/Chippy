@@ -1,24 +1,28 @@
-  
 
-<table>
+
+<table class = "checkout">
   <% @order.order_products.each do |op| %>
 
+  <div>
   <tr>
-    <td><%= op.product.name %></td>
+
+    <td id = "product-name"><%= op.product.name %></td>
+
     <td>
 
-    Quantity: <%= op.quantity %>
-<!--     <%= simple_form_for :basket, url: new_order_path(@order) do |f| %>
+    <!-- Quantity: <%= op.quantity %> -->
+    <%= simple_form_for @order do |f| %>
 
-    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5], selected: op.quantity, required: false %>
+    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: op.quantity, required: false, input_html: {onchange:"update_total(this)", id: "checkout-quantity"}, :remote => true %>
     
-    <% end %> -->
+    <% end %>
 
     </td>
     <td><%= number_to_currency(op.product.price) %></td>
     <td><%= image_tag op.product.image(:small) %></td>
     <td><%= button_to "Delete", product_basket_path(op.product), method: :delete %></td>
   </tr>
+  </div>
 <tr>
 
 <% end %>
@@ -34,11 +38,14 @@
 <tr>
   <td>Total</td>
   <td></td>
-  <td>
-  <%= number_to_currency(Product.total_basket_price(basket)) %> (<%= pluralize(basket_size, "item") %>) 
-  </td>
+  <td id ="total-cost">
+  
+  <%= render "totalcost" %>
 
+  </td>
 </tr>
+
+
 <tr>
   <td> <%= button_to "Continue shopping", products_path, method: :get %></td>
 </tr>

@@ -1,11 +1,7 @@
 class OrdersController < ApplicationController
 
-	
 
 	def new
-		# this would be the checkout page
-
-		# need everything that's in the basket to be present in the checkout page
 
 		@order = Order.new
 
@@ -23,7 +19,6 @@ class OrdersController < ApplicationController
 		@order = Order.new(order_params)
 
 		# @product = basket.find(params[:product_id])
-
 
 		basket.each do |item|
 			@order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity])

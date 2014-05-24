@@ -1,0 +1,5 @@
+
+$("#total-cost").html("<%= escape_javascript render("orders/totalcost") %>");
+
+
+$("#basket-link").replaceWith("<%= escape_javascript link_to pluralize(basket_size, "item"), new_order_path, id: "basket-link" %>")
