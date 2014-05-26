@@ -1,16 +1,23 @@
-function update_total(dropdown){
-    var quantity = dropdown.value;
-	var name = $(dropdown).closest("td").prev().html();
-	$.ajax({
+
+
+	$(document).on("change", "#checkout-quantity", function(){
+
+		    quantity = this.value;
+
+			name = $(this).closest("td").prev().html();
+
+			$.ajax({
+				
+				url: "/orders/new/basket_update",
+				data: {quantity: quantity, name: name},
+				dataType: "script"
 		
-		url: "/orders/new/basket_update",
-		data: {quantity: quantity, name: name},
-		dataType: "script"
-		
+			});
 
 	});
+	
 
 
-};
+
 
 

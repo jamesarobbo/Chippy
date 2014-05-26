@@ -1,4 +1,8 @@
+<div id="flash-update" style = "display: none" >
+    
+<%= render "flashupdate" %>
 
+</div>
 
 <table class = "checkout">
   <% @order.order_products.each do |op| %>
@@ -13,7 +17,7 @@
     <!-- Quantity: <%= op.quantity %> -->
     <%= simple_form_for @order do |f| %>
 
-    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: op.quantity, required: false, input_html: {onchange:"update_total(this)", id: "checkout-quantity"}, :remote => true %>
+    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: op.quantity, required: false, input_html: {id: "checkout-quantity"} %>
     
     <% end %>
 
@@ -39,7 +43,7 @@
   <td>Total</td>
   <td></td>
   <td id ="total-cost">
-  
+
   <%= render "totalcost" %>
 
   </td>

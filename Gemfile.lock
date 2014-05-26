@@ -58,6 +58,9 @@ GEM
       activesupport (>= 3.0.0)
     arel (4.0.2)
     bcrypt (3.1.7)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     bourbon (3.2.0)
       sass (~> 3.2)
       thor
@@ -66,6 +69,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -201,6 +205,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activemerchant
+  better_errors
   coffee-rails (~> 4.0.0)
   country_select
   figaro

@@ -1,0 +1,12 @@
+
+$("#basket-link").replaceWith("<%= escape_javascript link_to pluralize(basket_size, "item"), new_order_path, id: "basket-link" %>");
+
+$("#flash-success").html("<%= escape_javascript render("products/flashsuccess") %>");
+
+$("#flash-success").show();
+
+$("#flash-success").fadeOut(3000);
+
+
+
+

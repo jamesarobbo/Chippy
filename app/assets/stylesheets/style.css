@@ -43,6 +43,19 @@ a:hover {
 	color: red;
 }
 
+div#flash-success {
+	text-align: center;
+	background-color: #009900;
+	color: #fff;
+	/*display: none;*/
+}
+
+div#flash-update {
+	text-align: center;
+	background-color: #009900;
+	color: #fff;
+	/*display: none;*/
+}
 
 /*CHIPPY LOGO!!*/
 h1 {

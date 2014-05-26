@@ -12,17 +12,26 @@ class BasketsController < ApplicationController
 
 				product[:quantity] = product[:quantity] + params[:basket][:quantity].to_i
 
+                flash.now[:success] = "Added to cart"
+
+            
 				end
+
 			end	 
+
 
 		else     
 
 			basket.add({product_id: prod.id, quantity: params[:basket][:quantity].to_i})
 
-			flash[:success] = "Product added to basket"
+			flash.now[:success] = "Added to cart"
+            
 		end
 
-		redirect_to product_path(prod)
+		respond_to do |format|
+
+            format.js
+        end    
 
 	end
 
@@ -59,7 +68,11 @@ class BasketsController < ApplicationController
 
                 if product[:product_id] == prod.id
 
-                product[:quantity] = params[:quantity].to_i  
+                product[:quantity] = params[:quantity].to_i 
+
+                flash.now[:update] = "Basket has been updated" 
+
+
 
                 end
             end

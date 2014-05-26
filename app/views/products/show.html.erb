@@ -1,10 +1,16 @@
+<div id="flash-success" style = "display: none" >
+		
+<%= render "flashsuccess" %>
+
+</div>	
+
 <%= @product.name %>
 <%= @product.price %>
 <%= image_tag @product.image(:large) %>
 
 <!--<%= link_to "Add to basket", product_basket_path(@product), method: :post %> -->
 
-<%= simple_form_for :basket, url: product_basket_path(@product) do |f| %>
+<%= simple_form_for :basket, url: product_basket_path(@product), remote: true do |f| %>
 
 <%= f.input :quantity, as: :select, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: 1, required: false %>
 <%= f.button :submit, "Add to basket" %>

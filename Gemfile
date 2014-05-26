@@ -59,7 +59,12 @@ gem "country_select"
 # secures sensitive info
 gem "figaro" 
 
-gem "debugger"
+# shows better error pages
+group :development do
+  gem "better_errors"
+end
+
+
 
 
 
