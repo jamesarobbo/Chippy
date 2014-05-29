@@ -3,7 +3,7 @@ $("#basket-link").replaceWith("<%= escape_javascript link_to pluralize(basket_si
 
 $("#flash-success").html("<%= escape_javascript render("products/flashsuccess") %>");
 
-$("#flash-success").show();
+$("#flash-success").fadeIn(1000);
 
 $("#flash-success").fadeOut(3000);
 

@@ -43,18 +43,18 @@ a:hover {
 	color: red;
 }
 
-div#flash-success {
+div#flash-success, div#flash-update {
 	text-align: center;
 	background-color: #009900;
 	color: #fff;
-	/*display: none;*/
+	display: none;
 }
 
-div#flash-update {
+div#flash-remove {
 	text-align: center;
-	background-color: #009900;
+	background-color: #B52704;
 	color: #fff;
-	/*display: none;*/
+	display: none;
 }
 
 /*CHIPPY LOGO!!*/

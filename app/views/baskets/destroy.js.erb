@@ -1,0 +1,31 @@
+$("#basket-link").replaceWith("<%= escape_javascript link_to pluralize(basket_size, "item"), new_order_path, id: "basket-link" %>");
+
+
+<% if basket_size == 0  %>
+
+$("#total-container").remove();
+
+<% else %>
+
+$("#total-cost").html("<%= escape_javascript render("orders/totalcost") %>");
+
+
+<% end %>
+
+$("#flash-remove").html("<%= escape_javascript render("orders/flashremove") %>");
+
+$("#flash-remove").fadeIn(1000);
+
+$("#flash-remove").fadeOut(3000);
+
+
+$("tr:contains('<%= escape_javascript @prod_name %>')").fadeOut();
+
+
+
+
+
+
+
+
+

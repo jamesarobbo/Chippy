@@ -12,7 +12,7 @@ class BasketsController < ApplicationController
 
 				product[:quantity] = product[:quantity] + params[:basket][:quantity].to_i
 
-                flash.now[:success] = "Added to cart"
+                flash.now[:success] = "Added to basket"
 
             
 				end
@@ -24,7 +24,7 @@ class BasketsController < ApplicationController
 
 			basket.add({product_id: prod.id, quantity: params[:basket][:quantity].to_i})
 
-			flash.now[:success] = "Added to cart"
+			flash.now[:success] = "Added to basket"
             
 		end
 
@@ -40,6 +40,8 @@ class BasketsController < ApplicationController
 
 		prod = Product.find(params[:product_id])
 
+		@prod_name = prod.name
+
 		if basket.to_a.collect{|item| item[:product_id]}.include? prod.id
 
 			basket.each do |product|
@@ -47,11 +49,18 @@ class BasketsController < ApplicationController
 				if product[:product_id] == prod.id
 
 					basket.delete(product)
+
+                flash.now[:remove] = "Item removed from basket"
+                    
 				end
 			end	
 		end		
 
-		redirect_to new_order_path
+		respond_to do |format|
+
+            format.js
+
+        end    
 
 	end
 		# 	basket.delete({product_id: prod.id})

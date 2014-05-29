@@ -1,6 +1,8 @@
 <div id="flash-update" style = "display: none" >
     
-<%= render "flashupdate" %>
+</div>
+
+<div id="flash-remove" style = "display: none" >
 
 </div>
 
@@ -8,13 +10,12 @@
   <% @order.order_products.each do |op| %>
 
   <div>
-  <tr>
+  <tr id = "item">
 
     <td id = "product-name"><%= op.product.name %></td>
 
     <td>
 
-    <!-- Quantity: <%= op.quantity %> -->
     <%= simple_form_for @order do |f| %>
 
     <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: op.quantity, required: false, input_html: {id: "checkout-quantity"} %>
@@ -24,7 +25,9 @@
     </td>
     <td><%= number_to_currency(op.product.price) %></td>
     <td><%= image_tag op.product.image(:small) %></td>
-    <td><%= button_to "Delete", product_basket_path(op.product), method: :delete %></td>
+    <td id = "remove">
+    <%= button_to "Delete", product_basket_path(op.product), method: :delete, remote: true %>
+    </td>
   </tr>
   </div>
 <tr>
@@ -39,7 +42,7 @@
 
 <% else %>
 
-<tr>
+<tr id = "total-container">
   <td>Total</td>
   <td></td>
   <td id ="total-cost">
