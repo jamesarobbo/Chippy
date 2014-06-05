@@ -84,9 +84,27 @@ iframe {
 	z-index: 1;
 }
 
-div.payment input {
-display: block;
+div#payment-container {
+	display:none;
+	width:600px;
+	border: 1px solid black;
+	position: relative;
+	margin: 0 auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

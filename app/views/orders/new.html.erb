@@ -6,97 +6,13 @@
 
 </div>
 
-<table class = "checkout">
-  <% @order.order_products.each do |op| %>
+<% if basket_size == 0 %>
 
-  <div>
-  <tr id = "item">
-
-    <td id = "product-name"><%= op.product.name %></td>
-
-    <td>
-
-    <%= simple_form_for @order do |f| %>
-
-    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: op.quantity, required: false, input_html: {id: "checkout-quantity"} %>
-    
-    <% end %>
-
-    </td>
-    <td><%= number_to_currency(op.product.price) %></td>
-    <td><%= image_tag op.product.image(:small) %></td>
-    <td id = "remove">
-    <%= button_to "Delete", product_basket_path(op.product), method: :delete, remote: true %>
-    </td>
-  </tr>
-  </div>
-<tr>
-
-<% end %>
-
-
-
-<% if basket.empty? %> 
-
-<tr></tr>
+<%= render "emptybasket" %>
 
 <% else %>
 
-<tr id = "total-container">
-  <td>Total</td>
-  <td></td>
-  <td id ="total-cost">
+<%= render "checkoutbasket" %>
 
-  <%= render "totalcost" %>
-
-  </td>
-</tr>
-
-
-<tr>
-  <td> <%= button_to "Continue shopping", products_path, method: :get %></td>
-</tr>
 <% end %>
- 
-</table>
 
-<div class="payment">
-  
-
-<%= simple_form_for @order do |f| %>
-
-<h3>Your details</h3>
-  
-  <%= f.input :first_name, required: false %>
-  <%= f.input :last_name, required: false %>
-  <%= f.input :email, placeholder: 'james@chippyworldwideracing.com', required: false %>
-
-<h3>Your shipping address</h3>
-
-  <%= f.input :address_1, required: false %>
-  <%= f.input :address_2, required: false %>
-  <%= f.input :city, required: false %>
-  <%= f.input :postal_code, label: "Postal/Zip Code", required: false %>
-  <div>
-    <%= f.label :country_code, "Country", required: false %>
-    <%= f.country_select :country_code, ["United Kingdom", "United States of America", "Switzerland", "Italy", "Russia"], required: false %>
-  </div>
-  
-<h3>Your payment information</h3>
-
-<%= if @order.errors.any?
- @order.errors[:base].to_sentence
-
-end%>
-
-
-
-  <%= f.input :card_number %>
-  <%= f.input :security_code, label: "Security code (CVC)" %>
-  <%= f.input :card_expires_on, as: :date, discard_day: true, add_month_numbers: true, start_year: Date.today.year, end_year: Date.today.year + 10, order: [:month, :year], label: "Card expiration date"  %>
-  <%= f.button :submit, "Confirm and pay" %>
-
-
- 
-<% end %>
-</div>

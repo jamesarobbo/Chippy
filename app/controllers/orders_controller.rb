@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 		# product = basket.find(:product_id)
 
 		basket.each do |item|
-			@order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity]) 
+			@order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity], size: item[:size]) 
 		end	
 
 	end
@@ -21,12 +21,11 @@ class OrdersController < ApplicationController
 		# @product = basket.find(params[:product_id])
 
 		basket.each do |item|
-			@order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity])
+			@order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity], size: item[:size])
 		end
 
 
-		if @order.purchase(basket)
-			if @order.save
+		if @order.purchase(basket) && @order.save
 
 				OrderNotifier.shipped(@order).deliver
 			
@@ -34,13 +33,9 @@ class OrdersController < ApplicationController
 
 				render "show"
 
-			else 
-
-				render "new"
-					
-			end
+		
 		else
-			render "new"
+				render "new"
 			
 		end
 
@@ -53,7 +48,7 @@ class OrdersController < ApplicationController
 def order_params
   params[:order][:card_expires_on] = Date.new(params[:order].delete("card_expires_on(1i)").to_i, params[:order].delete("card_expires_on(2i)").to_i, params[:order].delete("card_expires_on(3i)").to_i)
   
-  params.require(:order).permit(:card_number, :security_code, :card_expires_on, :first_name, :last_name, :email, :address_1, :address_2, :city, :postal_code, :country_code, :shipped, :shipped_date)
+  params.require(:order).permit(:card_number, :security_code, :card_expires_on, :first_name, :last_name, :email, :address_1, :address_2, :city, :postal_code, :country_code, :quantity, :size)
 end
 
 

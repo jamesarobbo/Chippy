@@ -21,7 +21,9 @@ class Order < ActiveRecord::Base
 	validates :card_expires_on, presence: true, :on => :create
 	validates_presence_of :shipped_date, :message => "You must enter a shipped date", :if => :shipped?
 	
-	validate :validate_card, :on => :create
+	# validate :validate_card, :on => :create
+	validate :validate_options, :on => :create
+
 	
 	
 
@@ -39,15 +41,28 @@ class Order < ActiveRecord::Base
 	end
 
 
-	def validate_card
-	 unless credit_card.valid? 
-	      credit_card.errors.full_messages.each do |message|
+	# def validate_card
+	#  unless credit_card.valid? 
+	#       credit_card.errors.full_messages.each do |message|
+ #       	   errors[:base] << message
+
+	#       end
+
+
+	#    end
+
+	# end
+
+	def validate_options
+		unless purchase_options.present? 
+	      purchase_options.errors.full_messages.each do |message|
        	   errors[:base] << message
 
 	      end
+	    
+	    end
 
-	   end
-	end
+	end	
 
 
 	def credit_card
@@ -86,8 +101,8 @@ class Order < ActiveRecord::Base
 				false
 
 			else 
-				true
-				
+
+				true	
 			end	
 
 	end

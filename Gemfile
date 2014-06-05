@@ -62,9 +62,9 @@ gem "figaro"
 # shows better error pages
 group :development do
   gem "better_errors"
+  
 end
 
-gem 'binding_of_caller', '~> 0.7.2'
 
 
 

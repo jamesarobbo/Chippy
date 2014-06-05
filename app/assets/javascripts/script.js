@@ -1,18 +1,112 @@
-// This makes the smooth scrolling 
-$(function() {
- $('a[href*=#]:not([href=#])').click(function() {
-   if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-     var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top //- 150
-        }, 2000);
+
+$(document).on("ready page:load", function() {
+
+
+  // if (!$("#payment-container").find("#errors").html()) {
+
+    $("#payment-container").hide();
+  
+    $("input#checkout-button").on("click", function(){
+
+      if ($("#payment-container").is(":hidden")) {
+
+        $("#payment-container").slideDown();
+
+        $("input#checkout-button").hide(); 
+
         return false;
-      }
-    }
-  });
+
+      };
+
+    });  
+
+  // };
+
+
+  if ($("#payment-container").find("#errors").html()) {
+
+    $("#payment-container").show();
+
+    $("input#checkout-button").hide();
+
+  };
+  
+
 });
+
+
+
+
+
+
+// $(document).on('ready page:load', function () {
+
+//   $("input#checkout-button").on("click", function(e){
+
+//     $("div#payment-container").lightbox_me({
+      
+//       overlayCSS: {background: 'black', opacity: .6},
+
+//     });
+
+//     e.preventDefault();
+
+//   }); 
+
+
+
+//   $("input#checkout-cancel").on("click", function(){
+   
+//     $("div#payment-container").trigger('close');
+
+//     return false
+
+//   }); 
+
+// }); 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// This makes the smooth scrolling 
+// $(function() {
+//  $('a[href*=#]:not([href=#])').click(function() {
+//    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+//      var target = $(this.hash);
+//       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+//       if (target.length) {
+//         $('html,body').animate({
+//           scrollTop: target.offset().top //- 150
+//         }, 2000);
+//         return false;
+//       }
+//     }
+//   });
+// });
+
+
+
 
 
 //frame[src*='player.vimeo.com']

@@ -4,7 +4,7 @@ class BasketsController < ApplicationController
 	
 		prod = Product.find(params[:product_id])
 
-		if basket.to_a.collect{|item| item[:product_id]}.include? prod.id
+		if basket.to_a.collect{|item| item[:product_id]}.include? prod.id && basket.to_a.collect{|item| item[:size]} == {size: params[:basket][:size]}
 
 			basket.each do |product|
 
@@ -22,7 +22,7 @@ class BasketsController < ApplicationController
 
 		else     
 
-			basket.add({product_id: prod.id, quantity: params[:basket][:quantity].to_i})
+			basket.add({product_id: prod.id, size: params[:basket][:size], quantity: params[:basket][:quantity].to_i})
 
 			flash.now[:success] = "Added to basket"
             

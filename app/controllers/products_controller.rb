@@ -6,15 +6,12 @@ class ProductsController < ApplicationController
 
 		@products = Product.all
 
-
 	end
 
 	def show
 		# show an individual product on a new page. 
 
 		@product = Product.find(params[:id])
-
-		
 
 	end
 

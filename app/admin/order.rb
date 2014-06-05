@@ -39,11 +39,11 @@ actions :all, :except => :new
   show do
     panel "Invoice" do
       table_for(order.order_products) do |t|
-        t.column("Product ID") {|item| item.product.id}
+        
         t.column("Product") {|item| auto_link item.product}
-        t.column("Description") {|item| item.product.description}
+        
         t.column("Color") {|item| item.product.color}
-        t.column("Size") {|item| item.product.size}
+        t.column("Size") {|item| item.size}
         t.column("Quantity") {|item| item.quantity}
         t.column("Cost") {|item| number_to_currency item.product.price * item.quantity}
      
