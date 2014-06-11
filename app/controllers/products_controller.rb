@@ -15,6 +15,20 @@ class ProductsController < ApplicationController
 
 	end
 
+	def available_stock
+
+		var = Size.find(params[:size])
+
+		@stocks = stock_number(var)
+
+		respond_to do |format|
+
+            format.js
+        end  
+
+	end	
+
+
 	
 
 

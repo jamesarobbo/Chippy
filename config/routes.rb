@@ -12,6 +12,9 @@ Chippy::Application.routes.draw do
   root "static_pages#home"
 
 
+  get "products/available_stock", to: "products#available_stock"
+  
+
   resources :products do
 
     resource :basket
@@ -22,6 +25,8 @@ Chippy::Application.routes.draw do
 
   
   match "orders/new/basket_update", to: "baskets#basket_update", via: [:get, :post], as: :basket_update
+
+
 
 
 

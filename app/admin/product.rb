@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
 
-menu :priority => 3
+menu :priority => 2
 
   filter :name
   filter :color
@@ -19,19 +19,49 @@ menu :priority => 3
   #  permitted
   # end
 
+
+
   index do
     selectable_column
     column "Product ID", :id
     column :name
     column :description
-    column :price do |product| 
+    column "Price", :sortable => :price do |product| 
       number_to_currency product.price
     end  
     column :color
-    column :size
+    
     column :image_file_name  
 
     default_actions
+  end
+
+
+  show do
+    attributes_table do
+        row :id
+        row :name
+        row :description
+        row :color
+        row :price do |product|
+          number_to_currency product.price
+        end  
+        row :image_file_name
+        row :updated_at
+              
+    end
+    
+    active_admin_comments
+  end
+
+  sidebar :Product_Stats, :only => :show do
+
+    attributes_table_for product do
+      row "Total sold" do
+        product.total_sold_product
+      end  
+
+    end
   end
 
 
@@ -39,9 +69,9 @@ menu :priority => 3
     f.inputs "Product", :multipart => true do
       f.input :name
       f.input :description
-      f.input :number_in_stock
+      
       f.input :color
-      f.input :size
+      
       f.input :price   
       f.input :image
       

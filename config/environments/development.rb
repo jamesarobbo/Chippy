@@ -4,7 +4,7 @@ Chippy::Application.configure do
   # ActiveMerchant billing gateway
   config.after_initialize do
   ActiveMerchant::Billing::Base.mode = :test
-    ::GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => "sk_test_0bDh8EaHgpe9NqcUfcE2WdLb")  
+    ::GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => ENV["STRIPE_SECRET_KEY"])  
   end
 
 

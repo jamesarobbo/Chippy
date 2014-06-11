@@ -1,0 +1,19 @@
+
+
+$(document).on("change", "#size-select", function(){
+
+
+			size = this.value;
+			
+
+			$.ajax({
+				
+				url: "/products/available_stock",
+				data: {size: size},
+				dataType: "script"
+		
+			});
+
+	});
+
+

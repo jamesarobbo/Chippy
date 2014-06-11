@@ -1,13 +1,16 @@
 class Order < ActiveRecord::Base
 
-	has_many :order_products
+	has_many :order_products, dependent: :destroy
 	has_many :products, through: :order_products
-
+	
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 # scope for active admin
 	scope :pending, -> { where(shipped: false) }
 	scope :shipped, -> { where(shipped: true) }
+	scope :cancelled, -> { where(cancel: true) }
+	scope :complete, -> { where(cancel: false) }
+
 
 	validates :first_name, presence: {:message => "Please enter your first name"}, length: { minimum: 2, :message => "Your name isn't long enough" }, :on => :create
 	validates :last_name, presence: {:message => "Please enter your last name"}, length: { minimum: 2 }, :on => :create
@@ -20,16 +23,19 @@ class Order < ActiveRecord::Base
 	validates :security_code, presence: true, length: { is: 3 }, :on => :create
 	validates :card_expires_on, presence: true, :on => :create
 	validates_presence_of :shipped_date, :message => "You must enter a shipped date", :if => :shipped?
+	validates_absence_of :cancel, :message => "Cannot cancel an order that has shipped!", :if => :shipped?
+	validates_presence_of :cancel_date, :message => "You must enter a cancelled date", :if => :cancel?
+
+
 	
 	# validate :validate_card, :on => :create
 	validate :validate_options, :on => :create
 
-	
-	
 
 # convert object to human readable format
 	def to_s
   	"#{id}"
+  	
   	
   	end
 

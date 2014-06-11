@@ -4,27 +4,28 @@ class BasketsController < ApplicationController
 	
 		prod = Product.find(params[:product_id])
 
-		if basket.to_a.collect{|item| item[:product_id]}.include? prod.id && basket.to_a.collect{|item| item[:size]} == {size: params[:basket][:size]}
+		if basket.to_a.collect{|item| [item[:product_id], item[:size]]}.include? [prod.id, params[:basket][:size]]
 
-			basket.each do |product|
+				basket.each do |product| 
 
-				if product[:product_id] == prod.id
+					if product[:product_id] == prod.id && product[:size] == params[:basket][:size] 
 
-				product[:quantity] = product[:quantity] + params[:basket][:quantity].to_i
+							product[:quantity] = product[:quantity] + params[:basket][:quantity].to_i
 
-                flash.now[:success] = "Added to basket"
+	                		flash.now[:success] = "Added to basket"
 
-            
-				end
-
-			end	 
-
+					end
+				end	
 
 		else     
 
-			basket.add({product_id: prod.id, size: params[:basket][:size], quantity: params[:basket][:quantity].to_i})
 
+			
+			basket.add({product_id: prod.id, quantity: params[:basket][:quantity].to_i, size: params[:basket][:size]})
+puts basket.inspect
 			flash.now[:success] = "Added to basket"
+
+
             
 		end
 
@@ -35,18 +36,18 @@ class BasketsController < ApplicationController
 
 	end
 
-# need to destroy the unique session basket id from the person. i.e. if they empty their basket?
+
 	def destroy
 
 		prod = Product.find(params[:product_id])
 
-		@prod_name = prod.name
+		@size = params[:size]
 
-		if basket.to_a.collect{|item| item[:product_id]}.include? prod.id
+		if basket.to_a.collect{|item| [item[:product_id], item[:size]]}.include? [prod.id, @size]
 
 			basket.each do |product|
 
-				if product[:product_id] == prod.id
+				if product[:product_id] == prod.id && product[:size] == @size
 
 					basket.delete(product)
 
@@ -75,13 +76,11 @@ class BasketsController < ApplicationController
 
             basket.each do |product|
 
-                if product[:product_id] == prod.id
+                if product[:product_id] == prod.id && Size.find(product[:size]).size == params[:size]
 
                 product[:quantity] = params[:quantity].to_i 
 
                 flash.now[:update] = "Basket has been updated" 
-
-
 
                 end
             end

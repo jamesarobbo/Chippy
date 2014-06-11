@@ -1,10 +1,14 @@
 $("#basket-link").replaceWith("<%= escape_javascript link_to pluralize(basket_size, "item"), new_order_path, id: "basket-link" %>");
 
+<%= puts basket_size %>
+
 <% if basket_size == 0  %>
 
 $("#checkoutbasket").html("<%= escape_javascript render("orders/emptybasket") %>");
 
 <% else %>
+
+$("#item-<%= @size %>").fadeOut();
 
 $("#total-cost").html("<%= escape_javascript render("orders/totalcost") %>");
 
@@ -18,7 +22,8 @@ $("#flash-remove").fadeIn(1000);
 $("#flash-remove").fadeOut(3000);
 
 
-$("tr:contains('<%= escape_javascript @prod_name %>')").fadeOut();
+
+
 
 
 
