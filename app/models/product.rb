@@ -8,18 +8,34 @@ class Product < ActiveRecord::Base
 	has_attached_file :image, styles: {large: "480x480#", medium: "240x240#", small: "120x120#"}
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
-
-
   def in_stock
     self.sizes.where('stock > 0')
   end
 
-
+# this calculates the total number of each product, regardless of size, that has been sold
   def total_sold_product
-
       self.order_products.collect{|item| item[:quantity]}.sum
 
   end
+
+# this calculates the total value of sold products, regardless of size
+  def total_sold_product_value
+
+      self.price * self.order_products.collect{|item| item[:quantity]}.sum 
+
+  end
+
+  # def check_sold_quantity
+
+    
+
+  #     self.order_products.joins(:order).where(orders: {cancel: false})collect{item[:quantity]}.sum
+
+    
+
+  # end
+
+
 
 
   def self.total_basket_price(basket)

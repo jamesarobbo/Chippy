@@ -2,11 +2,13 @@ class Order < ActiveRecord::Base
 
 	has_many :order_products, dependent: :destroy
 	has_many :products, through: :order_products
+
+
 	
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 # scope for active admin
-	scope :pending, -> { where(shipped: false) }
+	scope :shipment_pending, -> { where(shipped: false) }
 	scope :shipped, -> { where(shipped: true) }
 	scope :cancelled, -> { where(cancel: true) }
 	scope :complete, -> { where(cancel: false) }
@@ -22,9 +24,9 @@ class Order < ActiveRecord::Base
 	validates :card_number, presence: true, :on => :create
 	validates :security_code, presence: true, length: { is: 3 }, :on => :create
 	validates :card_expires_on, presence: true, :on => :create
-	validates_presence_of :shipped_date, :message => "You must enter a shipped date", :if => :shipped?
-	validates_absence_of :cancel, :message => "Cannot cancel an order that has shipped!", :if => :shipped?
-	validates_presence_of :cancel_date, :message => "You must enter a cancelled date", :if => :cancel?
+	validates_absence_of :cancel, :message => "You cannot cancel an order that has shipped OR ship an order that has been cancelled!", :if => :shipped?
+	
+	
 
 
 	
@@ -44,6 +46,23 @@ class Order < ActiveRecord::Base
 		a = self.id.to_s
 		b = "Order ##{a}" + " - " + self.first_name + " " + self.last_name
 
+	end
+
+	def shipped_date
+		if self.shipped == true
+			self.shipped_date = Time.now
+		else
+			
+		end	
+	end
+
+	def cancel_date
+		if self.cancel == true
+			self.cancel_date = Time.now
+		else
+
+		
+		end	
 	end
 
 

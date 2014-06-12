@@ -25,13 +25,15 @@ menu :priority => 2
     selectable_column
     column "Product ID", :id
     column :name
-    column :description
     column "Price", :sortable => :price do |product| 
       number_to_currency product.price
     end  
     column :color
+    column "Total Sold" do |product|
+      product.total_sold_product
+    end 
     
-    column :image_file_name  
+     
 
     default_actions
   end
@@ -60,10 +62,15 @@ menu :priority => 2
       row "Total sold" do
         product.total_sold_product
       end  
+      row "Total value" do
+        number_to_currency product.total_sold_product_value
+      end  
+ 
 
     end
   end
 
+   
 
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Product", :multipart => true do

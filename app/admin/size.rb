@@ -14,6 +14,9 @@ menu :priority => 3
       column "Current stock" do |s|
         s.current_stock_number
       end
+      column "Total sold" do |s|
+        s.check_sold_quantity
+      end  
 
       default_actions
   end

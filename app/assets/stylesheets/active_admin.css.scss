@@ -14,4 +14,12 @@
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
-//   .status_tag { background: #6090DB; }
+  .status_tag { background: #b2b2b2; }
+
+  .status_tag, .status_tag.pending.warning {background: #b2b2b2; }
+
+  .status_tag.complete, .status_tag.complete.ok {background: #27ae60}
+
+  .status_tag.shipped, .status_tag.shipped.ok {background: #27ae60}
+
+  .status_tage.cancelled, .status_tag.cancelled.error {background: #c0392b}

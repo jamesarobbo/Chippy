@@ -6,13 +6,15 @@ has_many :order_products
 
 def display_name
 	a = self.id.to_s
-	b = self.product.name + " - " + self.size 
+	b = self.size 
 end
 
 def to_s
   	"#{size}"
 end
 
+
+# this collects and sums the quantity of each order product if the order cancel field is false
 def check_sold_quantity
 
 	self.order_products.joins(:order).where(orders: {cancel: false}).collect{|item| item[:quantity]}.sum
@@ -25,8 +27,31 @@ def current_stock_number
     var = self.order_products.joins(:order).where(orders: {cancel: false}).collect{|item| item[:quantity]}.sum
 
     level = self.stock - var
-        
+     
 end
+
+
+
+def stock_level_email
+
+	var = self.order_products.joins(:order).where(orders: {cancel: false}).collect{|item| item[:quantity]}.sum
+
+    @level = self.stock - var
+
+    if @level = 5
+
+    	StockNotifier.stock_level(self).deliver
+    else
+    
+    end	
+
+
+end
+
+
+
+
+
 
 
 def self.hello
