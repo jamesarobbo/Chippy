@@ -4,36 +4,38 @@ class Product < ActiveRecord::Base
 	has_many :orders, through: :order_products
   has_many :sizes
 
+  validates :description, :presence => true
+  validates :name, :uniqueness => true, :presence => true
+  validates :price, :presence => true 
+  validates :color, :presence => true
+  validates :order_id, :presence => true
+  validates :image_file_name, :presence => true
+
 
 	has_attached_file :image, styles: {large: "480x480#", medium: "240x240#", small: "120x120#"}
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
+
+# this displays the size only if the current stock number is greater than 0.
   def in_stock
-    self.sizes.where('stock > 0')
+    var = self.sizes
+    var.delete_if{|item| item.current_stock_number < 1}
   end
 
 # this calculates the total number of each product, regardless of size, that has been sold
   def total_sold_product
-      self.order_products.collect{|item| item[:quantity]}.sum
+    self.order_products.collect{|item| item[:quantity]}.sum
 
   end
 
 # this calculates the total value of sold products, regardless of size
   def total_sold_product_value
 
-      self.price * self.order_products.collect{|item| item[:quantity]}.sum 
+    self.price * self.order_products.collect{|item| item[:quantity]}.sum 
 
   end
 
-  # def check_sold_quantity
 
-    
-
-  #     self.order_products.joins(:order).where(orders: {cancel: false})collect{item[:quantity]}.sum
-
-    
-
-  # end
 
 
 

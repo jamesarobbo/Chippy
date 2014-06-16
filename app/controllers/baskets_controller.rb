@@ -4,30 +4,38 @@ class BasketsController < ApplicationController
 	
 		prod = Product.find(params[:product_id])
 
-		if basket.to_a.collect{|item| [item[:product_id], item[:size]]}.include? [prod.id, params[:basket][:size]]
 
-				basket.each do |product| 
+		if Product.exists?(params[:product_id].to_i)
 
-					if product[:product_id] == prod.id && product[:size] == params[:basket][:size] 
+			if basket.to_a.collect{|item| [item[:product_id], item[:size]]}.include? [prod.id, params[:basket][:size]]
 
-							product[:quantity] = product[:quantity] + params[:basket][:quantity].to_i
+					basket.each do |product| 
 
-	                		flash.now[:success] = "Added to basket"
+						if product[:product_id] == prod.id && product[:size] == params[:basket][:size] 
 
-					end
-				end	
+								product[:quantity] = product[:quantity] + params[:basket][:quantity].to_i
 
-		else     
+		                		flash.now[:success] = "Added to basket"
 
+						end
+					end	
+
+
+			else     
 
 			
 			basket.add({product_id: prod.id, quantity: params[:basket][:quantity].to_i, size: params[:basket][:size]})
-puts basket.inspect
+
 			flash.now[:success] = "Added to basket"
 
 
-            
-		end
+			end
+
+		else
+		
+		reset_session
+
+		end	
 
 		respond_to do |format|
 

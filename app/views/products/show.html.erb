@@ -4,7 +4,7 @@
 
 </div>	
 
-
+<div>
 <%= @product.name %>
 <%= @product.price %>
 <%= image_tag @product.image(:large) %>
@@ -12,15 +12,16 @@
 
 <%= simple_form_for :basket, url: product_basket_path(@product), remote: true do |f| %>
 
-<%= f.input :size, as: :select, collection: @product.in_stock, selected: 0, required: false, input_html: {id: "size-select"} %>
+<%= f.input :size, as: :select, collection: @product.in_stock, selected: 1, required: false, input_html: {id: "size-select"} %>
 
-<%= f.input :quantity, as: :select, collection: stock_number(@product.sizes.first), selected: 0, required: false, input_html: {id: "quantity-select"} %>
-
+<%= f.input :quantity, as: :select, collection: stock_number(@product.in_stock.first), selected: 1, required: false, input_html: {id: "quantity-select"} %>
 
 
 <%= f.button :submit, "Add to basket" %>
 
 <% end %>
+
+</div>
 
 
 

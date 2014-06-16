@@ -3,9 +3,12 @@ class Order < ActiveRecord::Base
 	has_many :order_products, dependent: :destroy
 	has_many :products, through: :order_products
 
-
-	
 	attr_accessor :card_number, :security_code, :card_expires_on
+
+	before_save :titleize
+  	before_create :titleize
+
+
 
 # scope for active admin
 	scope :shipment_pending, -> { where(shipped: false) }
@@ -25,20 +28,15 @@ class Order < ActiveRecord::Base
 	validates :security_code, presence: true, length: { is: 3 }, :on => :create
 	validates :card_expires_on, presence: true, :on => :create
 	validates_absence_of :cancel, :message => "You cannot cancel an order that has shipped OR ship an order that has been cancelled!", :if => :shipped?
-	
-	
 
-
-	
 	# validate :validate_card, :on => :create
 	validate :validate_options, :on => :create
+	
 
 
 # convert object to human readable format
 	def to_s
-  	"#{id}"
-  	
-  	
+  		"#{id}"	
   	end
 
 # This is for the row on Active Admin that displays Order number and name
@@ -46,6 +44,15 @@ class Order < ActiveRecord::Base
 		a = self.id.to_s
 		b = "Order ##{a}" + " - " + self.first_name + " " + self.last_name
 
+	end
+
+	def titleize
+		self.first_name = self.first_name.titleize
+		self.last_name = self.last_name.titleize
+		self.address_1 = self.address_1.titleize
+		self.address_2 = self.address_2.titleize
+		self.city = self.city.titleize
+		self.postal_code = self.postal_code.titleize
 	end
 
 	def shipped_date

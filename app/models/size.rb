@@ -3,6 +3,10 @@ class Size < ActiveRecord::Base
 belongs_to :product
 has_many :order_products
 
+validates :size, :presence => true
+validates :stock, :presence => true
+validates :product_id, :presence => true
+
 
 def display_name
 	a = self.id.to_s
@@ -31,14 +35,14 @@ def current_stock_number
 end
 
 
-
+# this calculates the current stock number as above and sends an email when the level reaches a certain amount
 def stock_level_email
 
 	var = self.order_products.joins(:order).where(orders: {cancel: false}).collect{|item| item[:quantity]}.sum
 
     @level = self.stock - var
 
-    if @level = 5
+    if @level == 5
 
     	StockNotifier.stock_level(self).deliver
     else
@@ -47,30 +51,6 @@ def stock_level_email
 
 
 end
-
-
-
-
-
-
-
-def self.hello
-
-	self.count
-
-end
-
-
-def hello
-
-	puts "ciao"
-
-end
-
-
-
-
-
 
 
 end

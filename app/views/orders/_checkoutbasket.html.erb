@@ -39,14 +39,21 @@
 </tr>
 
 </table>
+
 <div>
-   <%= button_to "Continue shopping", products_path, method: :get %></td>
+   <%= button_to "Continue shopping", products_path, method: :get %>
 </div>
+
+<% if @order_product.errors.any? %>
+    <div id="errors">
+<%= @order_product.errors[:base].to_sentence %>
+    </div>
+    <%end%>
 
 <div id="payment-container">
 
     
-    <% if @order.errors.any? %>
+    <% if @order.errors.any?  %>
     <div id="errors">
     <%= @order.errors[:base].to_sentence %>
     </div>
