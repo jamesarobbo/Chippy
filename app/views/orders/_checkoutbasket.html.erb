@@ -2,7 +2,7 @@
 <table class = "checkout">
 
   <% @order.order_products.each do |op| %>
-
+  
   <div>
   <tr id = "item-<%= op.size.id %>">
 
@@ -12,7 +12,11 @@
 
     <%= simple_form_for @order do |f| %>
 
-    <%= f.input :quantity, label: "Quantity:", as: :select, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: op.quantity, required: false, input_html: {id: "checkout-quantity"} %>
+    
+
+    <%= f.input :quantity, label: "Quantity:", as: :select, collection: stock_number(op.size), selected: op.quantity, required: false, input_html: {id: "checkout-quantity"} %>
+
+
     
     <% end %>
 
@@ -46,7 +50,7 @@
 
 <% if @order_product.errors.any? %>
     <div id="errors">
-<%= @order_product.errors[:base].to_sentence %>
+  <%= @order_product.errors[:base].to_sentence %>
     </div>
     <%end%>
 

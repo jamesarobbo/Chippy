@@ -3,18 +3,19 @@ ActiveAdmin.register Order do
 menu :priority => 1
 
 scope :all
+# scope :Purchase_complete
+# scope :Purchase_cancelled
 scope :shipment_pending, :default => true
 scope :shipped
-# scope :complete
-# scope :cancelled
+
 
 filter :created_at, :label => "Order Date"
-# filter :order_products
 filter :products
 filter :last_name
 filter :email, :label => "Email Address"
 filter :shipped
 filter :shipped_date
+
 filter :cancel, :label => "Cancelled"
 filter :cancel_date
  

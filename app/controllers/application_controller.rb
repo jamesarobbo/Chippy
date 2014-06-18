@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :basket
   helper_method :basket_size
   helper_method :stock_number
+  
 
   def basket
     session[:basket] ||= Set.new

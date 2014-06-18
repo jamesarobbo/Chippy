@@ -1,3 +1,5 @@
+
+
 ActiveAdmin.register Size do
 
 menu :priority => 3

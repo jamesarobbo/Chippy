@@ -13,7 +13,7 @@ class BasketsController < ApplicationController
 
 						if product[:product_id] == prod.id && product[:size] == params[:basket][:size] 
 
-								product[:quantity] = product[:quantity] + params[:basket][:quantity].to_i
+								product[:quantity] = params[:basket][:quantity].to_i
 
 		                		flash.now[:success] = "Added to basket"
 
@@ -72,9 +72,7 @@ class BasketsController < ApplicationController
         end    
 
 	end
-		# 	basket.delete({product_id: prod.id})
 
-		# flash[:success] = "Product removed from basket"
 
     def basket_update
 

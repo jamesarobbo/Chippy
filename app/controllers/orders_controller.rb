@@ -3,12 +3,19 @@ class OrdersController < ApplicationController
 
 	def new
 
-		@order = Order.new
+
+
+		puts @order = Order.new
+
+
 
 		basket.each do |item|
 			@order_product = @order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity], size: Size.find(item[:size]))
 			
 		end	
+
+
+
 
 	end
 
@@ -19,15 +26,11 @@ class OrdersController < ApplicationController
 
 		# @product = basket.find(params[:product_id])
 
-		puts "*" *1000
-		puts @order.inspect
+		
 
 		basket.each do |item|
 			@order_product = @order.order_products.build(product: Product.find(item[:product_id]), quantity: item[:quantity], size: Size.find(item[:size]))
 		end
-
-		puts "*" *1000
-		puts @order.order_products.inspect
 
 
 		if @order.purchase(basket) && @order.save

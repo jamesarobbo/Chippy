@@ -8,7 +8,7 @@ class OrderProduct < ActiveRecord::Base
 
   validate :validate_size, :on => :create
   validate :validate_quantity, :on => :create
-
+  validate :validate_current_stock, :on => :create
 
   def to_s
   	"#{id}"
@@ -33,15 +33,21 @@ class OrderProduct < ActiveRecord::Base
 
   def validate_quantity
 
-    puts "*" *1000
-    puts self.quantity
-
     unless self.quantity <= 10
 
-      puts errors.add(:base, "Unfortunately, you can't order more than 10 of each item and size at a time. Please reduce the number of items in your basket before proceeding.")
+      errors.add(:base, "Unfortunately, you can't order more than 10 of each item and size at a time. Please reduce the number of items in your basket before proceeding.")
     end  
 
   end
+
+  def validate_current_stock
+
+    unless self.quantity <= self.size.current_stock_number
+
+      errors.add(:base, "Unfortunately, there's only #{self.size.current_stock_number} of that item, #{self.product.name} - #{self.size}, left in stock. Please edit your basket.")
+
+    end
+  end  
 
  
 
