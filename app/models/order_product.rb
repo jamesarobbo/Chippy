@@ -9,6 +9,7 @@ class OrderProduct < ActiveRecord::Base
   validate :validate_size, :on => :create
   validate :validate_quantity, :on => :create
   validate :validate_current_stock, :on => :create
+  validate :validate_product, :on => :create
 
   def to_s
   	"#{id}"
@@ -18,6 +19,15 @@ class OrderProduct < ActiveRecord::Base
 # this calls the stock_level_email method from size.rb because we want the method to trigger after order_product is saved
   def call_stock_level_email_method
     self.size.stock_level_email
+
+  end
+
+  def validate_product
+
+    unless Product.exists?(self.product_id)
+
+      errors.add(:base, "The product you 'selected' doesn't exist. Please go back to the products page to make your selection.")
+    end    
 
   end
 

@@ -68,6 +68,8 @@ end
 # this capitalises the first letter of each word that the customer enters
 gem "titleize", "~> 1.3.0"
 
+gem "rack-mini-profiler"
+
 
 
 

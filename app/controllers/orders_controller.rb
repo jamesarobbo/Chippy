@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
 
 
 
-		puts @order = Order.new
+		@order = Order.new
 
 
 

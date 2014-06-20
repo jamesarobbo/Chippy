@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
  	else
 
- 	(1..10).to_a
+ 	(1..9).to_a
  	
  	end	
 

@@ -3,13 +3,10 @@ class Order < ActiveRecord::Base
 	has_many :order_products, dependent: :destroy
 	has_many :products, through: :order_products
 
-
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 	before_save :titleize
   	before_create :titleize
-
-
 
 # scope for active admin
 	scope :shipment_pending, -> { where(shipped: false) }

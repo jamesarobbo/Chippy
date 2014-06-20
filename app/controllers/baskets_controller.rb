@@ -17,6 +17,7 @@ class BasketsController < ApplicationController
 
 		                		flash.now[:success] = "Added to basket"
 
+		                
 						end
 					end	
 
@@ -33,7 +34,7 @@ class BasketsController < ApplicationController
 
 		else
 		
-		reset_session
+			reset_session
 
 		end	
 

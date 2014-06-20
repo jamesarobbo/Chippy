@@ -2,6 +2,10 @@
 <table class = "checkout">
 
   <% @order.order_products.each do |op| %>
+
+  <% puts "*" *1000 %>
+
+  <% puts @order.order_products.inspect %>
   
   <div>
   <tr id = "item-<%= op.size.id %>">
