@@ -1,41 +1,36 @@
 ActiveAdmin.register Product do
 
+config.batch_actions = false
 menu :priority => 2
 
   filter :name
   filter :color
   filter :size
   filter :price
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #  permitted = [:permitted, :attributes]
-  #  permitted << :other if resource.something?
-  #  permitted
+  
+  # index do
+  #   selectable_column
+  #   column "Product ID", :id
+  #   column :name
+  #   column "Price", :sortable => :price do |product| 
+  #     number_to_currency product.price
+  #   end  
+  #   column :color
+  #   column "Total Sold", sortable: :total_sold_product do |product|
+  #     product.total_sold_product
+  #   end 
+    
+  #   default_actions
   # end
 
-
-
-  index do
-    selectable_column
-    column "Product ID", :id
-    column :name
-    column "Price", :sortable => :price do |product| 
-      number_to_currency product.price
-    end  
-    column :color
-    column "Total Sold" do |product|
-      product.total_sold_product
-    end 
+  index :as => :grid do |product|
+    div do
+      a :href => admin_product_path(product) do
+        image_tag product.image(:small)
+      end
+    end
+    a truncate(product.name), :href => admin_product_path(product)
     
-     
-
-    default_actions
   end
 
 
@@ -49,6 +44,7 @@ menu :priority => 2
           number_to_currency product.price
         end  
         row :image_file_name
+        row :created_at
         row :updated_at
               
     end

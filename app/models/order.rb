@@ -70,9 +70,11 @@ class Order < ActiveRecord::Base
 		end	
 	end
 
+	def total_order_cost
+    	
+    	self.products.collect{|item| item[:price]}.sum
 
-
-
+  	end
 
 	# def validate_card
 	#  unless credit_card.valid? 
