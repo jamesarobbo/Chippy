@@ -24,14 +24,14 @@ class Product < ActiveRecord::Base
 
 # this calculates the total number of each product, regardless of size, that has been sold
   def total_sold_product
-    self.order_products.collect{|item| item[:quantity]}.sum
+    self.order_products.joins(:order).where(orders: {cancel: false}).collect{|item| item[:quantity]}.sum
 
   end
 
 # this calculates the total value of sold products, regardless of size
   def total_sold_product_value
 
-    self.price * self.order_products.collect{|item| item[:quantity]}.sum 
+    self.price * self.order_products.joins(:order).where(orders: {cancel: false}).collect{|item| item[:quantity]}.sum 
 
   end
 

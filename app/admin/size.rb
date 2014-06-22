@@ -19,9 +19,25 @@ menu :priority => 3
       column "Total sold", sortable: :check_sold_quantity do |s|
         s.check_sold_quantity
       end  
+      column "Total value", sortable: :total_sold_size_value do |s|
+        number_to_currency s.total_sold_size_value
+      end  
 
       default_actions
   end
+
+  # show do
+  #   attributes_table do
+  #     row :id
+  #     row :product
+  #     row :size
+
+  #     row :created_at
+  #     row :updated_at
+
+  #   end  
+
+  # end  
 
 
   form :html => { :enctype => "multipart/form-data" } do |f|

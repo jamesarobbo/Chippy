@@ -9,10 +9,10 @@ class Order < ActiveRecord::Base
   	before_create :titleize
 
 # scope for active admin
-	scope :shipment_pending, -> { where(shipped: false) }
+	scope :shipment_pending, -> { where(shipped: false, cancel: false) }
 	scope :shipped, -> { where(shipped: true) }
-	scope :Purchase_cancelled, -> { where(cancel: true) }
-	scope :Purchase_complete, -> { where(cancel: false) }
+	# scope :Purchase_cancelled, -> { where(cancel: true) }
+	# scope :Purchase_complete, -> { where(cancel: false) }
 
 
 	validates :first_name, presence: {:message => "Please enter your first name"}, length: { minimum: 2, :message => "Your name isn't long enough" }, :on => :create

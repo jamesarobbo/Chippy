@@ -34,6 +34,12 @@ def current_stock_number
      
 end
 
+def total_sold_size_value
+
+    self.product.price * check_sold_quantity
+
+end    
+
 
 # this calculates the current stock number as above and sends an email when the level reaches a certain amount
 def stock_level_email
