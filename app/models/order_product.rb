@@ -21,6 +21,8 @@ class OrderProduct < ActiveRecord::Base
 
   end
 
+
+# this ensures that when the person attempts to pay the product they've selected exists. Prevents them from hacking.
   def validate_product
 
     unless Product.exists?(self.product_id)
@@ -29,6 +31,8 @@ class OrderProduct < ActiveRecord::Base
     end    
 
   end
+
+# ensures that the size exists.
 
   def validate_size
 
@@ -40,6 +44,7 @@ class OrderProduct < ActiveRecord::Base
 
   end
 
+# ensures that the person doesn't order more than 10 od each product and size.
   def validate_quantity
 
     unless self.quantity <= 10
@@ -49,6 +54,7 @@ class OrderProduct < ActiveRecord::Base
 
   end
 
+# ensures that there is actually enough stock available. 
   def validate_current_stock
 
     unless self.quantity <= self.size.current_stock_number
