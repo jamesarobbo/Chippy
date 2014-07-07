@@ -62,8 +62,11 @@ gem "figaro"
 # shows better error pages
 group :development do
   gem "better_errors"
+  # gem "binding_of_caller"
   
 end
+
+
 
 # this capitalises the first letter of each word that the customer enters
 gem "titleize", "~> 1.3.0"

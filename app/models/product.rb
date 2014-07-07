@@ -45,6 +45,10 @@ class Product < ActiveRecord::Base
 
   end
 
+  def product_sizes
+
+  end
+
   def self.total_basket_price(basket)
     # where(id: basket.to_a.collect{|item| item[:product_id]}).sum(:price)
     prods = where(id: basket.to_a.collect{|item| item[:product_id]}).collect{|product| [:id => product.id, :price => product.price]}

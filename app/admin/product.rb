@@ -33,7 +33,6 @@ menu :priority => 2
     
   end
 
-
   show do
     attributes_table do
         row :id
@@ -46,6 +45,9 @@ menu :priority => 2
         row :image_file_name
         row :created_at
         row :updated_at
+        row "Sizes" do |product|
+          product.sizes.collect{|s| s.size}.to_sentence
+        end
               
     end
     

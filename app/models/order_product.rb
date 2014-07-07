@@ -11,6 +11,8 @@ class OrderProduct < ActiveRecord::Base
   validate :validate_current_stock, :on => :create
   validate :validate_product, :on => :create
 
+
+# this ensures the id is a human readable format
   def to_s
   	"#{id}"
   end
