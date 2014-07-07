@@ -1,8 +1,12 @@
 class Product < ActiveRecord::Base
 
+
 	has_many :order_products
 	has_many :orders, through: :order_products
   has_many :sizes
+
+  before_save :titleize
+  before_create :titleize
 
   validates :description, :presence => true
   validates :name, :uniqueness => true, :presence => true
@@ -11,9 +15,15 @@ class Product < ActiveRecord::Base
   validates :order_id, :presence => true
   validates :image_file_name, :presence => true
 
-
 	has_attached_file :image, styles: {large: "480x480#", medium: "240x240#", small: "120x120#"}
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+  def titleize
+    self.name = self.name.titleize
+    self.color = self.color.titleize
+    self.image_file_name = self.image_file_name.titleize
+
+  end
 
 
 # this displays the size only if the current stock number is greater than 0.

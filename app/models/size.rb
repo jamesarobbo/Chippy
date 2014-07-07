@@ -3,18 +3,26 @@ class Size < ActiveRecord::Base
 belongs_to :product
 has_many :order_products
 
+before_save :titleize
+before_create :titleize
+
 validates :size, :presence => true
 validates :stock, :presence => true
 validates :product_id, :presence => true
 
 
 def display_name
-	a = self.id.to_s
-	b = self.size 
+   
+    "#" + self.id.to_s + " - " + self.product.name + " - " + self.size
 end
 
 def to_s
   	"#{size}"
+end
+
+def titleize
+    self.size = self.size.titleize
+
 end
 
 

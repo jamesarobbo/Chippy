@@ -4,9 +4,10 @@ menu :priority => 1
 
 scope :all
 # scope :Purchase_complete
-# scope :Purchase_cancelled
+
 scope :shipment_pending, :default => true
 scope :shipped
+scope :cancelled
 
 
 filter :created_at, :label => "Order Date"
@@ -46,7 +47,7 @@ actions :all, :except => :new
     panel "Invoice" do
       table_for(order.order_products) do |t|
         
-        t.column("Product") {|item| auto_link item.product}
+        t.column("Product") {|item| item.product.name}
         t.column("Color") {|item| item.product.color}
         t.column("Size") {|item| item.size}
         t.column("Quantity") {|item| item.quantity}
@@ -76,8 +77,11 @@ actions :all, :except => :new
           status_tag((c.cancel? ? "Cancelled" : "Complete"), (c.cancel? ? :error : :ok))
         end
         t.column "Cancel Date (if purchase cancelled)", :cancel_date
-        t.column "Shipment Status" do |ship|
-          status_tag((ship.shipped? ? "Shipped" : "Pending"), (ship.shipped? :warning))
+        # t.column "Shipment Status" do |ship|
+        #   status_tag((ship.shipped? ? "Shipped" : "Pending"), (ship.shipped? :warning))
+        # end
+        column "Shipment Status", :sortable => :cancel do |ship|
+          status_tag((ship.shipped? ? "Shipped" : "Pending"), (ship.shipped? ? :ok : :warning))
         end
         t.column :shipped_date
       end

@@ -68,7 +68,14 @@ end
 # this capitalises the first letter of each word that the customer enters
 gem "titleize", "~> 1.3.0"
 
+# human-readable urls
+gem 'friendly_id', '~> 5.0.0'
+
 gem "rack-mini-profiler"
+
+gem 'devise'
+
+gem 'jquery-ui-rails', '~> 4.2.1'
 
 
 

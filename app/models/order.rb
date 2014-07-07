@@ -3,6 +3,7 @@ class Order < ActiveRecord::Base
 	has_many :order_products, dependent: :destroy
 	has_many :products, through: :order_products
 
+
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 	before_save :titleize
@@ -11,7 +12,7 @@ class Order < ActiveRecord::Base
 # scope for active admin
 	scope :shipment_pending, -> { where(shipped: false, cancel: false) }
 	scope :shipped, -> { where(shipped: true) }
-	# scope :Purchase_cancelled, -> { where(cancel: true) }
+	scope :cancelled, -> { where(cancel: true) }
 	# scope :Purchase_complete, -> { where(cancel: false) }
 
 
