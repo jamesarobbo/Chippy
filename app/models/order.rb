@@ -3,7 +3,6 @@ class Order < ActiveRecord::Base
 	has_many :order_products, dependent: :destroy
 	has_many :products, through: :order_products
 
-
 	attr_accessor :card_number, :security_code, :card_expires_on
 
 	before_save :titleize
@@ -23,7 +22,7 @@ class Order < ActiveRecord::Base
 	validates :city, presence: {:message => "Please enter your city"}, :on => :create
 	validates :postal_code, presence: {:message => "Please enter your postal or zip code"}, :on => :create
 	validates :country_code, presence: {:message => "Please select your country"}, :on => :create
-	validates :card_number, presence: true, :on => :create
+	validates :card_number, presence: true, length: {is: 16}, :on => :create
 	validates :security_code, presence: true, length: { is: 3 }, :on => :create
 	validates :card_expires_on, presence: true, :on => :create
 	validates_absence_of :cancel, :message => "You cannot cancel an order that has shipped OR ship an order that has been cancelled!", :if => :shipped?
@@ -54,6 +53,7 @@ class Order < ActiveRecord::Base
 		self.postal_code = self.postal_code.titleize
 	end
 
+# auto-completion of shipped date field
 	def shipped_date
 		if self.shipped == true
 			self.shipped_date = Time.now
@@ -62,18 +62,19 @@ class Order < ActiveRecord::Base
 		end	
 	end
 
+# auto-completion of cancel date field
 	def cancel_date
 		if self.cancel == true
 			self.cancel_date = Time.now
 		else
 
-		
 		end	
 	end
 
+# this is for the total order cost to be displayed on the Order admin invoice
 	def total_order_cost
     	
-    	self.products.collect{|item| item[:price]}.sum
+    	self.products.collect{|item| item.price}.sum
 
   	end
 

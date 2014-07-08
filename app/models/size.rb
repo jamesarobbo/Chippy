@@ -11,6 +11,7 @@ validates :stock, :presence => true
 validates :product_id, :presence => true
 
 
+
 def display_name
    
     "#" + self.id.to_s + " - " + self.product.name + " - " + self.size
@@ -42,6 +43,7 @@ def current_stock_number
      
 end
 
+# this gives the total value of each product size sold for active admin
 def total_sold_size_value
 
     self.product.price * check_sold_quantity

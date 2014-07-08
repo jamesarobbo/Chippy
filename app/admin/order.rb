@@ -27,19 +27,23 @@ actions :all, :except => :new
     column "Order ID", :sortable => :id do |order| 
       link_to "##{order.id}", admin_order_path(order)
     end 
+
     column "Order Date", :created_at
+
     column "Purchase Status", :sortable => :cancel do |c|
       status_tag((c.cancel? ? "Cancelled" : "Complete"), (c.cancel? ? :error : :ok))
     end
     column "Shipment Status", :sortable => :cancel do |ship|
       status_tag((ship.shipped? ? "Shipped" : "Pending"), (ship.shipped? ? :ok : :warning))
     end
+
     column :first_name
     column :last_name
     column "Email Address", :email
-    # column "Total", sortable: :total_order_cost do |order|
-    #   number_to_currency order.total_order_cost
-    # end 
+    column "Total", sortable: :total_order_cost do |order|
+      number_to_currency order.total_order_cost
+    end 
+
     
    end 
 

@@ -8,12 +8,12 @@ class Product < ActiveRecord::Base
   before_save :titleize
   before_create :titleize
 
-  validates :description, :presence => true
-  validates :name, :uniqueness => true, :presence => true
-  validates :price, :presence => true 
-  validates :color, :presence => true
-  validates :order_id, :presence => true
-  validates :image_file_name, :presence => true
+  validates :description, :presence => true, :on => :create, :on => :update
+  validates :name, :uniqueness => true, :presence => true, :on => :create, :on => :update
+  validates :price, :presence => true, :on => :create, :on => :update
+  validates :color, :presence => true, :on => :create, :on => :update
+  # validates :order_id, :presence => true, :on => :create
+  validates :image_file_name, :presence => true, :on => :create, :on => :update
 
 	has_attached_file :image, styles: {large: "480x480#", medium: "240x240#", small: "120x120#"}
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
@@ -42,10 +42,6 @@ class Product < ActiveRecord::Base
   def total_sold_product_value
 
     self.price * self.order_products.joins(:order).where(orders: {cancel: false}).collect{|item| item[:quantity]}.sum 
-
-  end
-
-  def product_sizes
 
   end
 

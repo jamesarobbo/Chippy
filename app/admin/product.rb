@@ -7,21 +7,6 @@ menu :priority => 2
   filter :color
   filter :size
   filter :price
-  
-  # index do
-  #   selectable_column
-  #   column "Product ID", :id
-  #   column :name
-  #   column "Price", :sortable => :price do |product| 
-  #     number_to_currency product.price
-  #   end  
-  #   column :color
-  #   column "Total Sold", sortable: :total_sold_product do |product|
-  #     product.total_sold_product
-  #   end 
-    
-  #   default_actions
-  # end
 
   index :as => :grid do |product|
     div do
@@ -42,13 +27,11 @@ menu :priority => 2
         row :price do |product|
           number_to_currency product.price
         end  
+
         row :image_file_name
         row :created_at
         row :updated_at
-        row "Sizes" do |product|
-          product.sizes.collect{|s| s.size}.to_sentence
-        end
-              
+         
     end
     
     active_admin_comments
@@ -62,13 +45,16 @@ menu :priority => 2
       end  
       row "Total value" do
         number_to_currency product.total_sold_product_value
-      end  
- 
+      end 
 
+      row "Sizes available" do |product|
+          product.sizes.collect{|s| s.size}.to_sentence
+      end
+      # row "Current stock" do |product|
+      #   product.sizes.collect{|s| s.current_stock_number}.to_sentence
+      # end
     end
   end
-
-   
 
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Product", :multipart => true do
@@ -81,6 +67,6 @@ menu :priority => 2
       f.input :image
       
       end
-      f.actions
+      f.actions 
 end
 end

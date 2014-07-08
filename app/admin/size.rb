@@ -26,7 +26,6 @@ menu :priority => 3
       row :updated_at
       row :created_at
       
-
     end
     active_admin_comments
   end  
