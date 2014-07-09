@@ -40,9 +40,9 @@ actions :all, :except => :new
     column :first_name
     column :last_name
     column "Email Address", :email
-    column "Total", sortable: :total_order_cost do |order|
-      number_to_currency order.total_order_cost
-    end 
+    # column "Total", sortable: :total_order_cost do |order|
+    #   number_to_currency order.total_order_cost
+    # end 
 
     
    end 
@@ -56,13 +56,13 @@ actions :all, :except => :new
         t.column("Size") {|item| item.size}
         t.column("Quantity") {|item| item.quantity}
         t.column("Cost") {|item| number_to_currency item.product.price * item.quantity}
-        tr :class => "even" do
-          td
-          td
-          td
-          td "TOTAL:", :style => "text-align: right; font-weight: 700"
-          td number_to_currency(order.total_order_cost)
-        end
+        # tr :class => "even" do
+        #   td
+        #   td
+        #   td
+        #   td "TOTAL:", :style => "text-align: right; font-weight: 700"
+        #   td number_to_currency(order.total_order_cost)
+        # end
         t.column "" do |item|
           link_to "View", admin_order_product_path(item)
         end
