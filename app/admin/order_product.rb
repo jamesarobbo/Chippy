@@ -25,12 +25,13 @@ controller do
 end 
 
   form :html => { :enctype => "multipart/form-data" } do |f|
-    f.inputs "Edit Quantity", :multipart => true do
-     
+    f.inputs "Edit Order Product - #{order_product.product.name}", :multipart => true do
+        
+        
         opsizes = OrderProduct.find(params[:id]).product.sizes
         
         f.input :size, as: :select, collection: opsizes
-        f.input :quantity
+        f.input :quantity, as: :select, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9]
       end
       f.actions do
         order = OrderProduct.find(params[:id]).order

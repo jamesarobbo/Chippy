@@ -57,9 +57,9 @@ menu :priority => 2
   end
 
   form :html => { :enctype => "multipart/form-data" } do |f|
-    f.inputs "Product", :multipart => true do
+    f.inputs "Product - #{product.name}", :multipart => true do
       f.input :name
-      f.input :description
+      f.input :description, :input_html => {:style => "height:100px;"}
       
       f.input :color
       

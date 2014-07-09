@@ -51,10 +51,10 @@ menu :priority => 3
 
 
   form :html => { :enctype => "multipart/form-data" } do |f|
-    f.inputs "Size", :multipart => true do
-      f.input :product
-      f.input :size
-      f.input :stock
+    f.inputs "#{size.product.name}", :multipart => true do
+      
+      f.input :size, as: :select, collection: ["One Size", "X-Small", "Small", "Medium", "Large", "X-Large"]
+      f.input :stock, :input_html => {:style => "width: 40px;"}
 
       end
       f.actions
