@@ -51,11 +51,12 @@ menu :priority => 3
 
 
   form :html => { :enctype => "multipart/form-data" } do |f|
-    f.inputs "#{size.product.name}", :multipart => true do
-      
+    f.inputs "", :multipart => true do
+      if f.object.new_record?
+        f.input :product  
+      end
       f.input :size, as: :select, collection: ["One Size", "X-Small", "Small", "Medium", "Large", "X-Large"]
       f.input :stock, :input_html => {:style => "width: 40px;"}
-
       end
       f.actions
   end
