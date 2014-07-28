@@ -47,7 +47,7 @@ menu :priority => 2
         number_to_currency product.total_sold_product_value
       end 
 
-      row "Sizes available" do |product|
+      row "Sizes" do |product|
           product.sizes.collect{|s| s.size}.to_sentence
       end
       # row "Current stock" do |product|
@@ -67,6 +67,9 @@ menu :priority => 2
       f.input :image
       
       end
-      f.actions 
+      f.actions do
+        f.action :submit, :wrapper_html => {:class => "update"}
+        f.cancel_link
+      end  
 end
 end

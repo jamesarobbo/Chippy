@@ -35,7 +35,7 @@ end
       end
       f.actions do
         order = OrderProduct.find(params[:id]).order
-        f.action(:submit)
+        f.action :submit, :wrapper_html => {:class => "update"}
         f.cancel_link(admin_order_path(order))
       end
   end

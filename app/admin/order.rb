@@ -127,7 +127,10 @@ actions :all, :except => :new
       f.input :shipped
       f.input :cancel
       end
-      f.actions
+      f.actions do
+        f.action :submit, :wrapper_html => {:class => "update"}
+        f.cancel_link
+      end
   end
   
 

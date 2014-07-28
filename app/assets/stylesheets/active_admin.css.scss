@@ -16,7 +16,7 @@
 //
   .status_tag { background: #b2b2b2; }
 
-  .status_tag, .status_tag.pending.warning {background: #b2b2b2; }
+  .status_tag, .status_tag.pending.warning {background: "orange"; }
 
   .status_tag.complete, .status_tag.complete.ok {background: #27ae60}
 
@@ -26,13 +26,19 @@
 
   form#edit_size, form#edit_order_product {width: 500px; margin: 0 auto;}
 
-  form#edit_product, form#edit_order {width: 620px; margin: 0 auto}
+  form#edit_product, form#edit_order, form#new_product, form#new_size  {width: 620px; margin: 0 auto}
 
   li.input {width: 500px;}
 
   li.input #product_color {width: 80px;}
 
   li.input #product_price {width: 40px;}
+
+  li#disabled.disabled.select.input.optional {display: none}
+
+
+
+ 
 
 
  

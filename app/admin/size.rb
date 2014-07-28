@@ -51,14 +51,20 @@ menu :priority => 3
 
 
   form :html => { :enctype => "multipart/form-data" } do |f|
-    f.inputs "", :multipart => true do
+    f.inputs :multipart => true do
       if f.object.new_record?
-        f.input :product  
+        f.input :product, :wrapper_html => {:class => "enabled"}
       end
+     
+      f.input :product, :input_html => {:disabled => true}, :wrapper_html => {:class => "disabled", :id => "disabled"}
       f.input :size, as: :select, collection: ["One Size", "X-Small", "Small", "Medium", "Large", "X-Large"]
       f.input :stock, :input_html => {:style => "width: 40px;"}
+    
       end
-      f.actions
+      f.actions do
+        f.action :submit, :wrapper_html => {:class => "update"}
+        f.cancel_link
+      end
   end
 
   

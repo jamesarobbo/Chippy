@@ -14,7 +14,7 @@ validates :product_id, :presence => true
 
 def display_name
    
-    "#" + self.id.to_s 
+    "#" + self.id.to_s + " - " + self.size + " (" + self.product.name + ")"
 end
 
 def to_s

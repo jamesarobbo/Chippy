@@ -17,6 +17,10 @@ class OrderProduct < ActiveRecord::Base
   	"#{id}"
   end
 
+  def display_name
+   "Order #" + self.order.id.to_s + " - " + self.order.first_name + " " + self.order.last_name + " - " + self.product.name + " - " + self.size.to_s
+
+  end
 # this calls the stock_level_email method from size.rb because we want the method to trigger after order_product is saved
   def call_stock_level_email_method
     self.size.stock_level_email
