@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626163003) do
+ActiveRecord::Schema.define(version: 20140728190249) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,17 +47,15 @@ ActiveRecord::Schema.define(version: 20140626163003) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "order_products", force: true do |t|
+    t.integer  "quantity"
+    t.integer  "size_id"
     t.integer  "order_id"
     t.integer  "product_id"
-    t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "size_id"
   end
 
   create_table "orders", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -71,11 +69,11 @@ ActiveRecord::Schema.define(version: 20140626163003) do
     t.boolean  "shipped",      default: false
     t.boolean  "cancel",       default: false
     t.date     "cancel_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "products", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "name"
     t.text     "description",        limit: 255
     t.string   "number_in_stock"
@@ -86,12 +84,14 @@ ActiveRecord::Schema.define(version: 20140626163003) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sizes", force: true do |t|
-    t.integer  "product_id"
     t.integer  "stock",      default: 0
     t.string   "size"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
