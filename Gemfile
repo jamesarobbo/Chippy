@@ -6,6 +6,9 @@ gem 'rails', '4.0.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
 
+# Use postgres for Heroku
+gem 'pg', group: :production
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -66,7 +69,7 @@ group :development do
   
 end
 
-
+gem 'rails_12factor', group: :production
 
 # this capitalises the first letter of each word that the customer enters
 gem "titleize", "~> 1.3.0"
